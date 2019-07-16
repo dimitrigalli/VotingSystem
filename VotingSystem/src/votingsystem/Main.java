@@ -2,6 +2,10 @@ package votingsystem;
 
 import java.awt.EventQueue;
 
+/**
+ * @author dimitrigalli
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
