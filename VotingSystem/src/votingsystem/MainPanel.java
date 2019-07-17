@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -44,9 +45,13 @@ public class MainPanel extends JPanel {
 		southpanel.add(imagelabel2, BorderLayout.EAST);
 		northpanel.add(title);
 		southpanel.add(new DigitalClock(), BorderLayout.WEST);
+		southpanel.add(new WarningPanel());
 		this.setLayout(new BorderLayout());
 		this.add(northpanel, BorderLayout.NORTH);
 		this.add(southpanel, BorderLayout.SOUTH);
+		this.add(new JPanel(), BorderLayout.WEST);
+		this.add(new JPanel(), BorderLayout.EAST);
+		//Pannello Centrale
 	}
 
 }
