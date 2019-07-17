@@ -1,6 +1,7 @@
 package votingsystem;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * @author dimitrigalli
@@ -21,6 +23,7 @@ public class MainPanel extends JPanel {
 	private JLabel imagelabel1;
 	private JLabel imagelabel2;
 	private JPanel northpanel, southpanel;
+	private JLabel title;
 	
 	public MainPanel() {
 		super();
@@ -33,10 +36,14 @@ public class MainPanel extends JPanel {
 		}
 		imagelabel1 = new JLabel(new ImageIcon(image1));
 		imagelabel2 = new JLabel(new ImageIcon(image2));
+		title = new JLabel("SISTEMA DI VOTO DIGITALE-ELETTRONICO", SwingConstants.CENTER);
+		title.setFont(new Font("Lucida Grande", Font.BOLD, 40));
 		northpanel = new JPanel(new BorderLayout());
 		northpanel.add(imagelabel1, BorderLayout.WEST);
 		southpanel = new JPanel(new BorderLayout());
 		southpanel.add(imagelabel2, BorderLayout.EAST);
+		northpanel.add(title);
+		southpanel.add(new DigitalClock(), BorderLayout.WEST);
 		this.setLayout(new BorderLayout());
 		this.add(northpanel, BorderLayout.NORTH);
 		this.add(southpanel, BorderLayout.SOUTH);
