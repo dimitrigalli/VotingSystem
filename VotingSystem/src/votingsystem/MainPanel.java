@@ -33,8 +33,6 @@ public class MainPanel extends JPanel {
 		}
 		imagelabel1 = new JLabel(new ImageIcon(image1));
 		imagelabel2 = new JLabel(new ImageIcon(image2));
-		imagelabel1.setSize(100, 100);
-		imagelabel2.setSize(100, 100);
 		northpanel = new JPanel(new BorderLayout());
 		northpanel.add(imagelabel1, BorderLayout.WEST);
 		southpanel = new JPanel(new BorderLayout());
