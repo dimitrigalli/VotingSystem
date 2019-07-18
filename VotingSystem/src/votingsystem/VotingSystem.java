@@ -1,5 +1,8 @@
 package votingsystem;
 
+import gui.MainFrame;
+import gui.MainPanel;
+
 /**
  * @author dimitrigalli
  *

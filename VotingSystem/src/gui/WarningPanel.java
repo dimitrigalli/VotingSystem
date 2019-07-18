@@ -1,4 +1,4 @@
-package votingsystem;
+package gui;
 
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
+/**
+ * @author dimitrigalli
+ *
+ */
 public class WarningPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

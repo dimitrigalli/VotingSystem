@@ -1,4 +1,4 @@
-package votingsystem;
+package gui;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -13,6 +13,10 @@ import javax.swing.Timer;
 
 import java.awt.Font;
 
+/**
+ * @author dimitrigalli
+ *
+ */
 public class DigitalClock extends JPanel {
 
 	private static final long serialVersionUID = 1L;
