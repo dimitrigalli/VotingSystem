@@ -14,13 +14,12 @@ import javax.swing.JPanel;
  * @author dimitrigalli
  *
  */
-public class InteractivePanel extends JPanel {
+public class BackgroundPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Image bgImg;
-	private AdminLoginPanel alp;
 
-	public InteractivePanel() {
+	public BackgroundPanel() {
 		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
 		this.setLayout(null);
 		try {
@@ -29,8 +28,7 @@ public class InteractivePanel extends JPanel {
 			System.out.println("Error: image \"BackgroundSchede.jpg\" not found\n");
 			e.printStackTrace();
 		}
-		alp = new AdminLoginPanel();
-		this.add(alp);
+		this.add(new CardsPanel());
 	}
 	
 	protected void paintComponent(Graphics g) {

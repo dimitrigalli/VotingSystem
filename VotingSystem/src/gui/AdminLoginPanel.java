@@ -1,119 +1,102 @@
 package gui;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.SwingConstants;
-
-import db.ConnessioneDBAdmin;
-
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 /**
  * @author dimitrigalli
  *
  */
-public class AdminLoginPanel extends JPanel implements ActionListener {
+public class AdminLoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private JButton btnAvanti;
-	
-	private String name;
-	private String passwd;
-	
-	public AdminLoginPanel() {
+
+	public AdminLoginPanel(CardsPanel mainPanel) {
 		setBackground(Color.WHITE);
-		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		setSize(400, 450);
-		setLocation(510, 30);
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("LOGIN AMMINISTRATORE");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		lblNewLabel.setBounds(20, 20, 230, 20);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 30));
+		lblNewLabel.setBounds(15, 15, 400, 30);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html>L'amministratore effettui il login attraverso i dati di username e password riportati sul plico telematico della sezione.</html>");
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(40, 50, 320, 60);
+		JLabel lblNewLabel_1 = new JLabel("<html><center>L'amministratore effettui il login attraverso i dati di username e password riportati sul plico telematico della sezione.</center></html>");
+		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(120, 40, 700, 100);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("<html>Si ricorda che cliccando su \"Avanti\" la sessione di voto NON verr� ancora avviata.</html>");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(40, 115, 320, 50);
+		JLabel lblNewLabel_2 = new JLabel("<html><center>Si ricorda che cliccando su \"AVANTI\" la sessione di voto NON verrà ancora avviata.</center></html>");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(120, 100, 700, 100);
 		add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("<html>In caso di problemi � OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.");
-		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(40, 175, 320, 50);
+		JLabel lblNewLabel_3 = new JLabel("<html><center>In caso di problemi è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.</center></html>");
+		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(120, 160, 700, 100);
 		add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Username");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(40, 240, 320, 20);
-		add(lblNewLabel_4);
+		JLabel username = new JLabel("<html><center>Username</center></html>");
+		username.setFont(new Font("Lucida Grande", Font.ITALIC, 18));
+		username.setBounds(425, 250, 90, 30);
+		add(username);
 		
-		JLabel lblNewLabel_5 = new JLabel("Password");
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(40, 300, 320, 20);
-		add(lblNewLabel_5);
+		JLabel password = new JLabel("<html><center>Password</center></html>");
+		password.setFont(new Font("Lucida Grande", Font.ITALIC, 18));
+		password.setBounds(425, 320, 90, 30);
+		add(password);
 		
 		textField = new JTextField();
-		textField.setBounds(110, 260, 180, 30);
+		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		textField.setBounds(320, 285, 300, 30);
 		add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(110, 320, 180, 30);
+		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		passwordField.setBounds(320, 355, 300, 30);
 		add(passwordField);
 		passwordField.setColumns(10);
 		
-		btnAvanti = new JButton("Avanti");
-		btnAvanti.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		btnAvanti.setBounds(140, 400, 120, 30);
-		add(btnAvanti);
-		btnAvanti.addActionListener(this);
-	}
+		JButton button = new JButton("AVANTI");
+		button.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		button.setBounds(410, 410, 120, 30);
+		add(button);
+		
+		button.addActionListener(new ActionListener() {
 
-	/**
-	 * @author Danilo Finizio
-	 *
-	 */
-	@SuppressWarnings("deprecation")
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnAvanti ) {
-			name=textField.getText();
-			passwd=passwordField.getText();
-			if(name.isEmpty() || passwd.isEmpty()) {
-				textField.setText("");//riazzero il campo username
-				passwordField.setText("");//riazzero il campo password
-				JOptionPane.showMessageDialog(this, "Attenzione: username o password NON inseriti!", "Errore", JOptionPane.ERROR_MESSAGE);
-			}			
-			else {
-				try {
-					if(ConnessioneDBAdmin.getConnection(name, passwd)==true) {
-						JOptionPane.showMessageDialog(this, "Accesso eseguito correttamente!");
-						//NUOVA FINESTRA!!!
-					}
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String name = textField.getText();
+				String passwd = passwordField.getText();
+				if (name.isEmpty() || passwd.isEmpty()) {
 					textField.setText("");//riazzero il campo username
 					passwordField.setText("");//riazzero il campo password
-					JOptionPane.showMessageDialog(this, "Attenzione: username o password NON corretti!", "Errore", JOptionPane.ERROR_MESSAGE);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Attenzione: username o password NON inseriti!", "Errore", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+				textField.setText("");//riazzero il campo username
+				passwordField.setText("");//riazzero il campo password
+				JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
+				CardsPanel cp = new CardsPanel();
+				cp.switchPanel(mainPanel, "Card 2");
 				}
 			}
-		}
+			
+		});
 	}
 }

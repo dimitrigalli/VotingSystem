@@ -52,7 +52,7 @@ public class MainPanel extends JPanel {
 		this.add(southpanel, BorderLayout.SOUTH);
 		this.add(new JPanel(), BorderLayout.WEST);
 		this.add(new JPanel(), BorderLayout.EAST);
-		this.add(new InteractivePanel(), BorderLayout.CENTER);
+		this.add(new BackgroundPanel(), BorderLayout.CENTER);
 	}
 
 }
