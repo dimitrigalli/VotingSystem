@@ -11,8 +11,6 @@ public class Persona {
 	private char sesso;
 	private String luogoDiNascita;
 	private String residenza;
-	
-	private byte[] numeroCartaIdentità = new byte[9];
-	private Date dataDiScadenzaCartaIdentità;
+	private byte[] codiceFiscale = new byte[16];
 	
 }
