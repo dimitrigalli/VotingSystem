@@ -1,4 +1,4 @@
-package votingsystem;
+package data;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package votingsystem;
+package data;
 
 public class Elettore extends Persona {
 

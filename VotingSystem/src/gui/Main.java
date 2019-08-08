@@ -1,4 +1,4 @@
-package votingsystem;
+package gui;
 
 import java.awt.EventQueue;
 

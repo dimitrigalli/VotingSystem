@@ -24,6 +24,8 @@ public class CardsPanel extends JPanel {
 		add(new AdminLoginPanel(this), "Card 1");
 		add(new ConfirmAdminLoginPanel(this), "Card 2");
 		add(new ElettoreLoginPanel(this), "Card 3");
+		add(new ConfirmElettoreLoginPanel(this), "Card 4");
+		add(new VotingPanel(this), "Card 5");
 	}
 	
 	public void switchPanel(Container container, String panelName) {

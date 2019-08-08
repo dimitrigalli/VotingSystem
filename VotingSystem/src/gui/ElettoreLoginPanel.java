@@ -2,9 +2,12 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -28,7 +31,8 @@ public class ElettoreLoginPanel extends JPanel {
 		lblNewLabel.setBounds(15, 15, 600, 30);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html><center>Inserire il <b>NUMERO della TESSERA ELETTORALE</b> (<i>9 cifre</i>) e cliccare \"AVANTI\".</center></html>");
+		JLabel lblNewLabel_1 = new JLabel("<html><center>Inserire il <b>NUMERO della TESSERA ELETTORALE</b> <i>(9 cifre)</i> e cliccare \"AVANTI\".</center></html>");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(185, 70, 570, 100);
 		add(lblNewLabel_1);
@@ -40,21 +44,47 @@ public class ElettoreLoginPanel extends JPanel {
 		add(lblNewLabel_2);
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		textField.setBounds(320, 250, 300, 30);
 		add(textField);
 		textField.setColumns(10);
-		
-		JButton button = new JButton("AVANTI");
-		button.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-		button.setBounds(410, 300, 120, 30);
-		add(button);
 		
 		JLabel lblNewLabel_3 = new JLabel("<html><center>In caso di <b>problemi</b> contattare un responsabile della sezione elettorale.</center></html>");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.ITALIC, 16));
 		lblNewLabel_3.setBounds(220, 350, 500, 100);
 		add(lblNewLabel_3);
+		
+		JButton button = new JButton("AVANTI");
+		button.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		button.setBounds(410, 300, 120, 30);
+		add(button);
+		
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String numTesEle = textField.getText();
+				if (numTesEle.isEmpty()) {
+					textField.setText("");
+					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito!", "Errore", JOptionPane.ERROR_MESSAGE);
+				}
+				else if (numTesEle.length() != 9) {
+					textField.setText("");
+					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito correttamente!", "Errore", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					textField.setText("");
+					textField.setText("");
+					JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
+					CardsPanel cp = new CardsPanel();
+					cp.switchPanel(mainPanel, "Card 4");
+				}
+			}
+			
+		});
 	}
 
 }
