@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 public class ConfirmElettoreLoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	String message = new String("<html><font size=\"4\">Dopo aver cliccato su OK, avrai a disposizione <b>90 secondi</b> per poter votare al termine dei quali<br>la tua votazione sarà considerata <b>SCHEDA BIANCA</b> se non esprimi alcuna preferenza verso<br>un partito (ed eventualmente un suo candidato).<br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su VOTA<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su VOTA nel riquardo del partito.</font></html>");
 
 	public ConfirmElettoreLoginPanel(CardsPanel mainPanel) {
 		setBackground(Color.WHITE);
@@ -56,6 +57,7 @@ public class ConfirmElettoreLoginPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (JOptionPane.showConfirmDialog(null, "Confermi l'identità?") == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, message);
 					CardsPanel cp = new CardsPanel();
 					cp.switchPanel(mainPanel, "Card 5");
 					}

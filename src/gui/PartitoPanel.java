@@ -10,7 +10,11 @@ import javax.swing.JPanel;
 
 import data.Partito;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +33,9 @@ public class PartitoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private BufferedImage img;
 	private ArrayList<String> listaProva = new ArrayList<String>();
+	private String noPreferenza = new String("*nessuna preferenza*");
 
-	public PartitoPanel(Partito partito) {
+	public PartitoPanel(Partito partito, CardsPanel mainPanel) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(null);
@@ -59,7 +64,7 @@ public class PartitoPanel extends JPanel {
 		lblNewLabel.setBounds(135, 20, 160, 20);
 		add(lblNewLabel);
 		
-		listaProva.add("*nessuna preferenza*");//da sostituire con classe Candidato!!!
+		listaProva.add(noPreferenza);//da sostituire con classe Candidato!!!
 		listaProva.add("Francesco Totti");//da sostituire con classe Candidato!!!
 		listaProva.add("Daniele De Rossi");//da sostituire con classe Candidato!!!
 		listaProva.add("Alessandro Florenzi");//da sostituire con classe Candidato!!!
@@ -74,5 +79,31 @@ public class PartitoPanel extends JPanel {
 		btnNewButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		btnNewButton.setBounds(160, 80, 120, 30);
 		add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String sceltaCandidato = comboBox.getSelectedItem().toString();
+				if (sceltaCandidato.equals(noPreferenza)) {
+					if (JOptionPane.showConfirmDialog(null, "Confermi il voto al partito \"NOME PARTITO\" senza preferenza candidato?") == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
+						CardsPanel cp = new CardsPanel();
+						cp.switchPanel(mainPanel, "Card 3");
+						
+					}
+				}
+				else {
+					if (JOptionPane.showConfirmDialog(null, "Confermi il voto al partito \"NOME PARTITO\" ed al suo candidato \"NOME CANDIDATO\"?") == JOptionPane.YES_OPTION) {
+						comboBox.setSelectedItem(noPreferenza);
+						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
+						CardsPanel cp = new CardsPanel();
+						cp.switchPanel(mainPanel, "Card 3");
+					}
+				}
+			}
+			
+		});
 	}
 }

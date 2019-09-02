@@ -20,8 +20,12 @@ public class VotingPanel extends JPanel {
 	public VotingPanel(CardsPanel mainPanel) {
 		setBackground(Color.WHITE);
 		setLayout(new GridLayout(4,3));
-		for (int i = 0; i < numPartiti; i++)
-			add(new PartitoPanel(partitoFacsimile));
+		for (int i = 0; i < numPartiti; i++) {
+			if (i == numPartiti-1)
+				add(new SchedaBiancaPanel(mainPanel));
+			else
+				add(new PartitoPanel(partitoFacsimile, mainPanel));
+		}
 	}
 
 }
