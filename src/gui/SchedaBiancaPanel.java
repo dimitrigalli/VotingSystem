@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * @author dimitrigalli
+ *
+ */
 public class SchedaBiancaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

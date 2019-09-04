@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 public class ConfirmElettoreLoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	String message = new String("<html><font size=\"4\">Dopo aver cliccato su OK, avrai a disposizione <b>90 secondi</b> per poter votare al termine dei quali<br>la tua votazione sarà considerata <b>SCHEDA BIANCA</b> se non esprimi alcuna preferenza verso<br>un partito (ed eventualmente un suo candidato).<br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su VOTA<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su VOTA nel riquardo del partito.</font></html>");
+	String message = new String("<html><font size=\"4\"><b>• Istruzioni IMPORTANTI su <i>come votare</i></b><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su VOTA<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su VOTA nel riquardo del partito.</font></html>");
 
 	public ConfirmElettoreLoginPanel(CardsPanel mainPanel) {
 		setBackground(Color.WHITE);
@@ -35,11 +35,17 @@ public class ConfirmElettoreLoginPanel extends JPanel {
 		lblNewLabel_1.setBounds(0, 60, 940, 50);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("<html><center><b><p style='color: red'>DAVIDE SURACI</p></b><br>nata/o il <b>01/01/00</b> presso <b>PAVULLO NEL FRIGNANO (MO)</b><br><br>residente presso <b>PIEVEPELAGO (MO)</b><br><br><i>Il tuo voto rimarrà ANONIMO.</i><center></html>");
+		JLabel lblNewLabel_2 = new JLabel("<html><center><b><p style='color: red'>DAVIDE SURACI</p></b><br>nata/o il <b>01/01/00</b> presso <b>PAVULLO NEL FRIGNANO (MO)</b><br><br>residente presso <b>PIEVEPELAGO (MO)</b><center></html>");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(0, 150, 940, 180);
 		add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("<html><center><i>Il tuo voto rimarrà ANONIMO. Hai tempo per votare fino alle <b>23:00</b>.</i></center></html>");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		lblNewLabel_3.setBounds(0, 315, 940, 50);
+		add(lblNewLabel_3);
 		
 		JButton buttonConfirm = new JButton("<html><center>CONFERMA IDENTITÀ<br>E VOTA</center></html>");
 		buttonConfirm.setFont(new Font("Lucida Grande", Font.BOLD, 18));

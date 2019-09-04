@@ -70,6 +70,7 @@ public class ConfirmAdminLoginPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (JOptionPane.showConfirmDialog(null, "Confermi l'apertura della sessione di voto?") == JOptionPane.YES_OPTION) {
+				new ApplicationTime(mainPanel);
 				JOptionPane.showMessageDialog(null, "Sessione di voto avviata!");
 				CardsPanel cp = new CardsPanel();
 				cp.switchPanel(mainPanel, "Card 3");
