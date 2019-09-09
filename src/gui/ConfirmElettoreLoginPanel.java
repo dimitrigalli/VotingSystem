@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 public class ConfirmElettoreLoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	String message = new String("<html><font size=\"4\"><b>• Istruzioni IMPORTANTI su <i>come votare</i></b><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su VOTA<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su VOTA nel riquardo del partito.</font></html>");
+	String message = new String("<html><font size=\"4\"><b>• Istruzioni IMPORTANTI su <i>come votare</i></b><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\"<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.</font></html>");
 
 	public ConfirmElettoreLoginPanel(CardsPanel mainPanel) {
 		setBackground(Color.WHITE);

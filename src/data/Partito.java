@@ -7,7 +7,7 @@ public class Partito {
 	
 	private String nome;
 	private BufferedImage simbolo;
-	private ArrayList<Candidato> candidati;
-	private int numeroPreferenzePartito;
+	private ArrayList<Candidato> listaCandidati;
+	private int numeroPreferenzePartito = 0;
 	
 }

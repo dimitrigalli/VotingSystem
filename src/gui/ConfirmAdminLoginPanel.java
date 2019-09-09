@@ -48,7 +48,7 @@ public class ConfirmAdminLoginPanel extends JPanel {
 		DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
 		String formattedTimeStr = formatTime.format(currentTime);
 		
-		JLabel lblNewLabel_3 = new JLabel("<html><center>SEZIONE ELETTORALE N.<b>1</b> DEL COMUNE DI <b>PIEVEPELAGO (MO)</b><br>→ PRESIDENTE DELLA SEZIONE: <b>Luca Rossi</b><br>→ SEGRETARIO DELLA SEZIONE: <b>Luca Rossi</b><br>→ SCRUTATORE DELLA SEZIONE: <b>Luca Rossi</b><br>La sessione di voto verrà aperta alle ore "+"<b>"+formattedTimeStr+"</b>"+" e verrà chiusa alle ore <b>23:00</b></center></html>");
+		JLabel lblNewLabel_3 = new JLabel("<html><center>SEZIONE ELETTORALE N.<b>1</b> DEL COMUNE DI <b>PIEVEPELAGO (MO)</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>DIMITRI GALLI</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>DIMITRI GALLI</b><br>→ SCRUTATORE DELLA SEZIONE: <b>DIMITRI GALLI</b><br>La sessione di voto verrà aperta alle ore "+"<b>"+formattedTimeStr+"</b>"+" e verrà chiusa alle ore <b>23:00</b></center></html>");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(100, 160, 740, 200);
