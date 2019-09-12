@@ -74,16 +74,16 @@ public class ClosingPanel extends JPanel {
 		panel.setPreferredSize(new Dimension(300, 70));
 		
 		JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
-	    label.add(new JLabel("Username", SwingConstants.CENTER));
-	    label.add(new JLabel("Password", SwingConstants.CENTER));
-	    panel.add(label, BorderLayout.WEST);
-
-	    JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
-	    JTextField username = new JTextField();
-	    controls.add(username);
-	    JPasswordField password = new JPasswordField();
-	    controls.add(password);
-	    panel.add(controls, BorderLayout.CENTER);
+		label.add(new JLabel("Username", SwingConstants.CENTER));
+		label.add(new JLabel("Password", SwingConstants.CENTER));
+		panel.add(label, BorderLayout.WEST);
+		
+		JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+		JTextField username = new JTextField();
+		controls.add(username);
+		JPasswordField password = new JPasswordField();
+		controls.add(password);
+		panel.add(controls, BorderLayout.CENTER);
 		
 		link1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

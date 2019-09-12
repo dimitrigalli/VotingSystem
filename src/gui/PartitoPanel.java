@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import data.Candidato;
 import data.Partito;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -32,7 +33,6 @@ public class PartitoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private BufferedImage img;
-	private ArrayList<String> listaProva = new ArrayList<String>();
 	private String noPreferenza = new String("*nessuna preferenza*");
 
 	public PartitoPanel(Partito partito, CardsPanel mainPanel) {
@@ -40,21 +40,21 @@ public class PartitoPanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(null);
 		
-		JLabel lblNomepartito = new JLabel("NOMEPARTITO");
-		lblNomepartito.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNomepartito = new JLabel(partito.getNome());
+		lblNomepartito.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNomepartito.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		lblNomepartito.setBounds(5, 5, 130, 20);
+		lblNomepartito.setBounds(5, 5, 300, 20);
 		add(lblNomepartito);
 		
 		try {
-			img = ImageIO.read(new File("images"+File.separator+"FacsimileLogoPartito.jpg"));
+			img = ImageIO.read(new File("images"+File.separator+partito.getSimbolo()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error: image \"FacsimileLogoPartito.jpg\" not found\n");
+			System.out.println("Error: image SIMBOLO not found\n");
 			e.printStackTrace();
 		}
 		JLabel imgSimboloPartito = new JLabel(new ImageIcon(img));
-		imgSimboloPartito.setBounds(28, 25, 85, 85);
+		imgSimboloPartito.setBounds(28, 25, 80, 80);
 		imgSimboloPartito.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		add(imgSimboloPartito);
 		
@@ -64,13 +64,8 @@ public class PartitoPanel extends JPanel {
 		lblNewLabel.setBounds(135, 20, 160, 20);
 		add(lblNewLabel);
 		
-		listaProva.add(noPreferenza);//da sostituire con classe Candidato!!!
-		listaProva.add("Francesco Totti");//da sostituire con classe Candidato!!!
-		listaProva.add("Daniele De Rossi");//da sostituire con classe Candidato!!!
-		listaProva.add("Alessandro Florenzi");//da sostituire con classe Candidato!!!
-		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(listaProva.toArray(new String[0])));
+		comboBox.setModel(new DefaultComboBoxModel<String>(partito.getListaStringheCandidati(partito.getListaCandidati()).toArray(new String[0])));
 		comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		comboBox.setBounds(135, 40, 175, 30);
 		add(comboBox);
@@ -87,7 +82,9 @@ public class PartitoPanel extends JPanel {
 				// TODO Auto-generated method stub
 				String sceltaCandidato = comboBox.getSelectedItem().toString();
 				if (sceltaCandidato.equals(noPreferenza)) {
-					if (JOptionPane.showConfirmDialog(null, "Confermi il voto al partito \"NOME PARTITO\" senza preferenza candidato?") == JOptionPane.YES_OPTION) {
+					if (JOptionPane.showConfirmDialog(null, "<html>Confermi il voto al partito <b>"+partito.getNome()+"</b> senza preferenza candidato?</html>") == JOptionPane.YES_OPTION) {
+						partito.addVoto();
+						System.out.println(partito.getNome() +" "+ partito.getNumeroPreferenzePartito());
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");
@@ -95,8 +92,19 @@ public class PartitoPanel extends JPanel {
 					}
 				}
 				else {
-					if (JOptionPane.showConfirmDialog(null, "Confermi il voto al partito \"NOME PARTITO\" ed al suo candidato \"NOME CANDIDATO\"?") == JOptionPane.YES_OPTION) {
-						comboBox.setSelectedItem(noPreferenza);
+					if (JOptionPane.showConfirmDialog(null, "<html>Confermi il voto al partito <b>"+partito.getNome()+"</b> ed al suo candidato <b>"+sceltaCandidato+"</b>?</html>") == JOptionPane.YES_OPTION) {
+						partito.addVoto();
+						System.out.println(partito.getNome() +" "+ partito.getNumeroPreferenzePartito());
+						int count = 0;
+						for (Iterator<Candidato> i = partito.getListaCandidati().iterator(); i.hasNext();) {
+							Candidato c = i.next();
+							if (sceltaCandidato.equals(c.toString())) {
+								partito.getListaCandidati().get(count).addVotoCandidato();
+								System.out.println(partito.getListaCandidati().get(count).toString() +" -> "+ partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato());
+							}
+							count++;
+						}
+						comboBox.setSelectedItem(partito.getListaStringheCandidati(partito.getListaCandidati()).get(0));
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");
