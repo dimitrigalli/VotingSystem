@@ -1,4 +1,4 @@
-package gui;
+package time;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;

@@ -1,10 +1,12 @@
-package gui;
+package time;
 
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
+
+import gui.CardsPanel;
 
 /**
  * @author dimitrigalli
@@ -27,9 +29,9 @@ public class ApplicationTime {
 			
 		};
 		Date oraFineSessione = new Date();
-		oraFineSessione.setHours(14);
-		oraFineSessione.setMinutes(20);
-		oraFineSessione.setSeconds(10);
+		oraFineSessione.setHours(23);
+		oraFineSessione.setMinutes(00);
+		oraFineSessione.setSeconds(00);
 		timer.schedule(exitApp, oraFineSessione); //La sessione di voto termina alle ore 23:00!
 	}
 	

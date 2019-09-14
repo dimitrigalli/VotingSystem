@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import time.ApplicationTime;
+
 /**
  * @author dimitrigalli
  *
