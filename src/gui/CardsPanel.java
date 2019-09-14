@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 public class CardsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private VotingPanel vp;
 
 	public CardsPanel() {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -25,8 +27,9 @@ public class CardsPanel extends JPanel {
 		add(new ConfirmAdminLoginPanel(this), "Card 2");
 		add(new ElettoreLoginPanel(this), "Card 3");
 		add(new ConfirmElettoreLoginPanel(this), "Card 4");
-		add(new VotingPanel(this), "Card 5");
-		add(new ClosingPanel(this), "Card 6");
+		vp = new VotingPanel(this);
+		add(vp, "Card 5");
+		add(new ClosingPanel(this, vp), "Card 6");
 	}
 	
 	public void switchPanel(Container container, String panelName) {

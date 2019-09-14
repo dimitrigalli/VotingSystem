@@ -27,9 +27,9 @@ public class ApplicationTime {
 			
 		};
 		Date oraFineSessione = new Date();
-		oraFineSessione.setHours(23);
-		oraFineSessione.setMinutes(00);
-		oraFineSessione.setSeconds(00);
+		oraFineSessione.setHours(14);
+		oraFineSessione.setMinutes(20);
+		oraFineSessione.setSeconds(10);
 		timer.schedule(exitApp, oraFineSessione); //La sessione di voto termina alle ore 23:00!
 	}
 	

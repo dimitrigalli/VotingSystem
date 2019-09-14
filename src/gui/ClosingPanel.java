@@ -10,7 +10,10 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +22,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.Candidato;
+import data.Partito;
+
 /**
  * @author dimitrigalli
  *
@@ -26,8 +32,10 @@ import javax.swing.SwingConstants;
 public class ClosingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	public ClosingPanel(CardsPanel mainPanel) {
+	
+	private int numeroTotaleVotanti = 0;
+	
+	public ClosingPanel(CardsPanel mainPanel, VotingPanel vp) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -90,8 +98,28 @@ public class ClosingPanel extends JPanel {
 			    if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
 			    	username.setText("");
 			    	password.setText("");
-			    	try {
-						Desktop.getDesktop().open(new File("documento.txt"));
+					PrintWriter out;
+					try {
+						out = new PrintWriter("risultati.txt");
+						out.println("********** .......... RISULTATI SESSIONE DI VOTO .......... **********");
+						out.println("");
+						for (Iterator<Partito> i = vp.getListaPartiti().iterator(); i.hasNext();) {
+							Partito p = i.next();
+							out.println(p.getNome() + "\t" + "*****" + "\t" + p.getNumeroPreferenzePartito());
+							numeroTotaleVotanti = numeroTotaleVotanti + p.getNumeroPreferenzePartito();
+							for (Iterator<Candidato> j = p.getListaCandidati().iterator(); j.hasNext();) {
+								Candidato c = j.next();
+								out.println(c.toString() + "\t" + "....." + "\t" + c.getNumeroPreferenzeCandidato());
+							}
+							out.println("");
+						}
+						numeroTotaleVotanti = numeroTotaleVotanti + vp.getSchedeBianche().getNumeroSchedeBianche();
+						out.println("NUMERO SCHEDE BIANCHE\t" + vp.getSchedeBianche().getNumeroSchedeBianche() + " --- " + "NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)\t" + numeroTotaleVotanti);
+						out.close();
+						Desktop.getDesktop().open(new File("risultati.txt"));
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

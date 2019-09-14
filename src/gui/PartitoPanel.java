@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.SwingConstants;
@@ -35,7 +36,7 @@ public class PartitoPanel extends JPanel {
 	private BufferedImage img;
 	private String noPreferenza = new String("*nessuna preferenza*");
 
-	public PartitoPanel(Partito partito, CardsPanel mainPanel) {
+	public PartitoPanel(Partito partito, CardsPanel mainPanel, ArrayList<Partito> listaPartiti, int index) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(null);
@@ -84,7 +85,8 @@ public class PartitoPanel extends JPanel {
 				if (sceltaCandidato.equals(noPreferenza)) {
 					if (JOptionPane.showConfirmDialog(null, "<html>Confermi il voto al partito <b>"+partito.getNome()+"</b> senza preferenza candidato?</html>") == JOptionPane.YES_OPTION) {
 						partito.addVoto();
-						System.out.println(partito.getNome() +" "+ partito.getNumeroPreferenzePartito());
+						System.out.println(partito.getNome() +" *** "+ partito.getNumeroPreferenzePartito());
+						listaPartiti.set(index, partito);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");
@@ -94,17 +96,19 @@ public class PartitoPanel extends JPanel {
 				else {
 					if (JOptionPane.showConfirmDialog(null, "<html>Confermi il voto al partito <b>"+partito.getNome()+"</b> ed al suo candidato <b>"+sceltaCandidato+"</b>?</html>") == JOptionPane.YES_OPTION) {
 						partito.addVoto();
-						System.out.println(partito.getNome() +" "+ partito.getNumeroPreferenzePartito());
+						System.out.println(partito.getNome() +" *** "+ partito.getNumeroPreferenzePartito());
 						int count = 0;
 						for (Iterator<Candidato> i = partito.getListaCandidati().iterator(); i.hasNext();) {
 							Candidato c = i.next();
 							if (sceltaCandidato.equals(c.toString())) {
-								partito.getListaCandidati().get(count).addVotoCandidato();
-								System.out.println(partito.getListaCandidati().get(count).toString() +" -> "+ partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato());
+								c.addVotoCandidato();
+								partito.getListaCandidati().set(count, c);
+								System.out.println(c.toString() +" ... "+ partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato());
 							}
 							count++;
 						}
 						comboBox.setSelectedItem(partito.getListaStringheCandidati(partito.getListaCandidati()).get(0));
+						listaPartiti.set(index, partito);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");
