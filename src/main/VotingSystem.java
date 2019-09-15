@@ -1,4 +1,7 @@
-package gui;
+package main;
+
+import gui.MainFrame;
+import gui.MainPanel;
 
 /**
  * @author dimitrigalli

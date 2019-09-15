@@ -1,5 +1,11 @@
 package data;
 
+/**Classe contenente i dati relativi ad un Candidato di un Partito: numero nella lista,
+ * cognome, nome e il numero di preferenze ottenute durante la sessione di voto.
+ * 
+ * @author dimitrigalli
+ *
+ */
 public class Candidato {
 	
 	private int numeroCandidato;

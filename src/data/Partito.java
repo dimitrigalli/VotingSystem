@@ -2,6 +2,13 @@ package data;
 
 import java.util.ArrayList;
 
+/**Classe contenente i dati relativi ad un Partito: nome, simbolo, lista dei propri canidati
+ * (come ArrayList di Candidati e come ArrayList di String) e il numero di preferenze che il
+ * Partito ottiene durante la sessione di voto.
+ * 
+ * @author dimitrigalli
+ *
+ */
 public class Partito {
 	
 	private String nome;
@@ -10,8 +17,6 @@ public class Partito {
 	private ArrayList<String> listaStringheCandidati;
 	private int numeroPreferenzePartito = 0;
 	
-	
-
 	public Partito(String nome, String simbolo, ArrayList<Candidato> listaCandidati) {
 		super();
 		this.nome = nome;

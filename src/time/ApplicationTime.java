@@ -28,11 +28,12 @@ public class ApplicationTime {
 			}
 			
 		};
+		/* La sessione di voto chiuderà alle ore 23:00. */
 		Date oraFineSessione = new Date();
 		oraFineSessione.setHours(23);
 		oraFineSessione.setMinutes(00);
 		oraFineSessione.setSeconds(00);
-		timer.schedule(exitApp, oraFineSessione); //La sessione di voto termina alle ore 23:00!
+		timer.schedule(exitApp, oraFineSessione);
 	}
 	
 }

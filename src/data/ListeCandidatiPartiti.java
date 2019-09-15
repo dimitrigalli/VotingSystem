@@ -2,6 +2,12 @@ package data;
 
 import java.util.ArrayList;
 
+/**Classe contenente il codice per la creazione della lista di Partiti votabili durante
+ * la sessione di voto e le relative liste di Candidati (struttura dati utilizzata ArrayList).
+ * 
+ * @author dimitrigalli
+ *
+ */
 public class ListeCandidatiPartiti {
 	
 	private ArrayList<Candidato> listaCandidati0 = new ArrayList<Candidato>();
