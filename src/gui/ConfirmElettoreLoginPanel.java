@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import data.Elettore;
+
 /**
  * @author dimitrigalli
  *
@@ -20,7 +22,7 @@ public class ConfirmElettoreLoginPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	String message = new String("<html><font size=\"4\"><b>• Istruzioni IMPORTANTI su <i>come votare</i></b><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\"<br>nel riquardo del partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima<br>selezionare il candidato dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.</font></html>");
 
-	public ConfirmElettoreLoginPanel(CardsPanel mainPanel) {
+	public ConfirmElettoreLoginPanel(CardsPanel mainPanel, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -35,7 +37,7 @@ public class ConfirmElettoreLoginPanel extends JPanel {
 		lblNewLabel_1.setBounds(0, 60, 940, 50);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("<html><center><b><p style='color: red'>DAVIDE SURACI</p></b><br>nata/o il <b>01/01/00</b> presso <b>PAVULLO NEL FRIGNANO (MO)</b><br><br>residente presso <b>PIEVEPELAGO (MO)</b><center></html>");
+		JLabel lblNewLabel_2 = new JLabel("<html><center><b><p style='color: red'>"+elettore.getNome()+" "+elettore.getCognome()+"</p></b><br>nata/o il <b>"+elettore.getDataDiNascita().toString()+"</b> presso <b>"+elettore.getLuogoDiNascita()+"</b><br><br>residente presso <b>"+elettore.getResidenza()+"</b><center></html>");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(0, 150, 940, 180);

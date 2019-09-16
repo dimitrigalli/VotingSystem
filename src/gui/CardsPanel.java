@@ -7,6 +7,9 @@ import java.awt.Container;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import data.Admin;
+import data.Elettore;
+
 /**
  * @author dimitrigalli
  *
@@ -14,6 +17,9 @@ import javax.swing.JPanel;
 public class CardsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Admin admin;
+	private Elettore elettore;
 	
 	private VotingPanel vp;
 
@@ -23,13 +29,16 @@ public class CardsPanel extends JPanel {
 		setLocation(240, 20);
 		setSize(940, 470);
 		
-		add(new AdminLoginPanel(this), "Card 1");
-		add(new ConfirmAdminLoginPanel(this), "Card 2");
-		add(new ElettoreLoginPanel(this), "Card 3");
-		add(new ConfirmElettoreLoginPanel(this), "Card 4");
-		vp = new VotingPanel(this);
+		admin = new Admin();
+		elettore = new Elettore();
+		
+		add(new AdminLoginPanel(this, admin), "Card 1");
+		add(new ConfirmAdminLoginPanel(this, admin), "Card 2");
+		add(new ElettoreLoginPanel(this, admin, elettore), "Card 3");
+		add(new ConfirmElettoreLoginPanel(this, elettore), "Card 4");
+		vp = new VotingPanel(this, elettore);
 		add(vp, "Card 5");
-		add(new ClosingPanel(this, vp), "Card 6");
+		add(new ClosingPanel(this, vp, admin), "Card 6");
 	}
 	
 	public void switchPanel(Container container, String panelName) {

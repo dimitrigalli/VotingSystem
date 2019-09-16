@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.Admin;
+
 /**
  * @author dimitrigalli
  *
@@ -25,7 +27,7 @@ public class AdminLoginPanel extends JPanel {
 	private JTextField textField;
 	private JPasswordField passwordField;
 
-	public AdminLoginPanel(CardsPanel mainPanel) {
+	public AdminLoginPanel(CardsPanel mainPanel, Admin admin) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -85,13 +87,17 @@ public class AdminLoginPanel extends JPanel {
 		
 		button.addActionListener(new ActionListener() {
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String name = textField.getText();
-				String passwd = passwordField.getText();
-				if (name.isEmpty() || passwd.isEmpty()) {
+				admin.setUsername(textField.getText());
+				admin.setPassword(password.getText());
+				
+				//Chiamata al costruttore ConnessioneDBAdmin passando come UNICO PARAMETRO admin!!! In ConnessioneDBAdmin cerco l'
+				//amministratore e se lo trovo inizializzo con set gli attributi di admin; se non lo trovo devo generare messaggio
+				//di errore indicando che l'admin non è presente nel DB!
+				
+				if (admin.getUsername().isEmpty() || admin.getPassword().isEmpty()) {
 					textField.setText("");//riazzero il campo username
 					passwordField.setText("");//riazzero il campo password
 					JOptionPane.showMessageDialog(null, "Attenzione: username o password NON inseriti!", "Errore", JOptionPane.ERROR_MESSAGE);

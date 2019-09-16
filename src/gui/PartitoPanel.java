@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import data.Candidato;
+import data.Elettore;
 import data.Partito;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,7 +37,7 @@ public class PartitoPanel extends JPanel {
 	private BufferedImage img;
 	private String noPreferenza = new String("*nessuna preferenza*");
 
-	public PartitoPanel(Partito partito, CardsPanel mainPanel, ArrayList<Partito> listaPartiti, int index) {
+	public PartitoPanel(Partito partito, CardsPanel mainPanel, ArrayList<Partito> listaPartiti, int index, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(null);
@@ -87,6 +88,7 @@ public class PartitoPanel extends JPanel {
 						partito.addVoto();
 						System.out.println(partito.getNome() +" *** "+ partito.getNumeroPreferenzePartito());
 						listaPartiti.set(index, partito);
+						elettore.setHasVoted(true);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");
@@ -109,6 +111,7 @@ public class PartitoPanel extends JPanel {
 						}
 						comboBox.setSelectedItem(partito.getListaStringheCandidati(partito.getListaCandidati()).get(0));
 						listaPartiti.set(index, partito);
+						elettore.setHasVoted(true);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
 						CardsPanel cp = new CardsPanel();
 						cp.switchPanel(mainPanel, "Card 3");

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import data.Admin;
 import time.ApplicationTime;
 
 /**
@@ -24,7 +25,7 @@ public class ConfirmAdminLoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public ConfirmAdminLoginPanel(CardsPanel mainPanel) {
+	public ConfirmAdminLoginPanel(CardsPanel mainPanel, Admin admin) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -50,7 +51,7 @@ public class ConfirmAdminLoginPanel extends JPanel {
 		DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
 		String formattedTimeStr = formatTime.format(currentTime);
 		
-		JLabel lblNewLabel_3 = new JLabel("<html><center>SEZIONE ELETTORALE N.<b>1</b> DEL COMUNE DI <b>PIEVEPELAGO (MO)</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>DIMITRI GALLI</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>DIMITRI GALLI</b><br>→ SCRUTATORE DELLA SEZIONE: <b>DIMITRI GALLI</b><br>La sessione di voto verrà aperta alle ore "+"<b>"+formattedTimeStr+"</b>"+" e verrà chiusa alle ore <b>23:00</b></center></html>");
+		JLabel lblNewLabel_3 = new JLabel("<html><center>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br>La sessione di voto verrà aperta alle ore "+"<b>"+formattedTimeStr+"</b>"+" e verrà chiusa alle ore <b>23:00</b></center></html>");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(100, 160, 740, 200);

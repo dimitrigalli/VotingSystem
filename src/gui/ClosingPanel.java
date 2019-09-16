@@ -22,6 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.Admin;
 import data.Candidato;
 import data.Partito;
 
@@ -35,7 +36,7 @@ public class ClosingPanel extends JPanel {
 	
 	private int numeroTotaleVotanti = 0;
 	
-	public ClosingPanel(CardsPanel mainPanel, VotingPanel vp) {
+	public ClosingPanel(CardsPanel mainPanel, VotingPanel vp, Admin admin) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -78,6 +79,8 @@ public class ClosingPanel extends JPanel {
 		link1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		add(link2);
 		
+		//Chiamata al costruttore della classe che dovrà salvare i risultati della sessione di voto nel DataBase!!!
+		
 		JPanel panel = new JPanel(new BorderLayout(8, 8));
 		panel.setPreferredSize(new Dimension(300, 70));
 		
@@ -94,45 +97,61 @@ public class ClosingPanel extends JPanel {
 		panel.add(controls, BorderLayout.CENTER);
 		
 		link1.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-			    if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-			    	username.setText("");
-			    	password.setText("");
-					PrintWriter out;
-					try {
-						out = new PrintWriter("risultati.txt");
-						out.println("********** .......... RISULTATI SESSIONE DI VOTO .......... **********");
-						out.println("");
-						for (Iterator<Partito> i = vp.getListaPartiti().iterator(); i.hasNext();) {
-							Partito p = i.next();
-							out.println(p.getNome() + "\t" + "*****" + "\t" + p.getNumeroPreferenzePartito());
-							numeroTotaleVotanti = numeroTotaleVotanti + p.getNumeroPreferenzePartito();
-							for (Iterator<Candidato> j = p.getListaCandidati().iterator(); j.hasNext();) {
-								Candidato c = j.next();
-								out.println(c.toString() + "\t" + "....." + "\t" + c.getNumeroPreferenzeCandidato());
-							}
+				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+					if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+						username.setText("");
+						password.setText("");
+						PrintWriter out;
+						try {
+							out = new PrintWriter("risultati.txt");
+							out.println("********** .......... RISULTATI SESSIONE DI VOTO .......... **********");
 							out.println("");
+							for (Iterator<Partito> i = vp.getListaPartiti().iterator(); i.hasNext();) {
+								Partito p = i.next();
+								out.println(p.getNome() + "\t" + "*****" + "\t" + p.getNumeroPreferenzePartito());
+								numeroTotaleVotanti = numeroTotaleVotanti + p.getNumeroPreferenzePartito();
+								for (Iterator<Candidato> j = p.getListaCandidati().iterator(); j.hasNext();) {
+									Candidato c = j.next();
+									out.println(c.toString() + "\t" + "....." + "\t" + c.getNumeroPreferenzeCandidato());
+								}
+								out.println("");
+							}
+							numeroTotaleVotanti = numeroTotaleVotanti + vp.getSchedeBianche().getNumeroSchedeBianche();
+							out.println("NUMERO SCHEDE BIANCHE\t" + vp.getSchedeBianche().getNumeroSchedeBianche() + " --- " + "NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)\t" + numeroTotaleVotanti);
+							out.close();
+							Desktop.getDesktop().open(new File("risultati.txt"));
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						numeroTotaleVotanti = numeroTotaleVotanti + vp.getSchedeBianche().getNumeroSchedeBianche();
-						out.println("NUMERO SCHEDE BIANCHE\t" + vp.getSchedeBianche().getNumeroSchedeBianche() + " --- " + "NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)\t" + numeroTotaleVotanti);
-						out.close();
-						Desktop.getDesktop().open(new File("risultati.txt"));
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					}
+					else {
+						username.setText("");
+						password.setText("");
+						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
 					}
 			    }
 			}
 		});
 		link2.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - chiudi definitivamente applicazione", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					username.setText("");
-					password.setText("");
-					System.exit(0);
+					if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+						username.setText("");
+						password.setText("");
+						System.exit(0);
+					}
+					else {
+						username.setText("");
+						password.setText("");
+						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});		

@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.Admin;
+import data.Elettore;
+
 /**
  * @author dimitrigalli
  *
@@ -22,7 +25,7 @@ public class ElettoreLoginPanel extends JPanel {
 	
 	private JTextField textField;
 
-	public ElettoreLoginPanel(CardsPanel mainPanel) {
+	public ElettoreLoginPanel(CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -66,17 +69,29 @@ public class ElettoreLoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String numTesEle = textField.getText();
-				if (numTesEle.isEmpty()) {
+				elettore.setNumeroTesseraElettorale(textField.getText().getBytes());
+				
+			////Chiamata al costruttore ConnessioneDBElettore passando come UNICO PARAMETRO elettore!!! In ConnessioneDBElettore cerco l'
+				//elettore e se lo trovo inizializzo con set gli attributi di elettore; se non lo trovo devo generare messaggio
+				//di errore indicando che l'elettore non è presente nel DB!
+				
+				if (elettore.getNumeroTesseraElettorale().toString().isEmpty()) {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
-				else if (numTesEle.length() != 9) {
+				else if (elettore.getNumeroTesseraElettorale().length != 9) {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito correttamente!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
-				else {
+				else if (elettore.getNumeroSezioneListaElettorale() != admin.getNumeroSezioneElettorale() || !(elettore.getResidenza().equals(admin.getComuneSezioneElettorale())) ) {
 					textField.setText("");
+					JOptionPane.showMessageDialog(null, "Attenzione: il numero e/o il comune della sezione della scheda elettorale inserita non coincidono/coincide con quelli/quello della presente sezione!", "Errore", JOptionPane.ERROR_MESSAGE);
+				}
+				else if (elettore.isHasVoted()) {
+					textField.setText("");
+					JOptionPane.showMessageDialog(null, "Attenzione: l'elettore inserito risulta abbia già votato. Non è possibile votare due o più volte!", "Errore", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
 					CardsPanel cp = new CardsPanel();
