@@ -49,23 +49,23 @@ public class ClosingPanel extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("<html><center>Tutti i voti sono stati correttamente inviati al <b>MINISTERO DELL'INTERNO - DIPARTIMENTO PER GLI AFFARI INTERNI E TERRITORIALI</b>.</center></html>");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(100, 70, 740, 50);
+		lblNewLabel_1.setBounds(100, 100, 740, 50);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("<html><center>• Per creare e visualizzare il documento illustrativo contenente i risultati parziali della sessione di voto del seggio registrato, l'<i><u>amministratore</u></i> clicchi il <b>link</b> sottostante e successivamente inserisca username e password.</center></html>");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(100, 125, 740, 80);
+		lblNewLabel_2.setBounds(100, 155, 740, 80);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("<html><center>• Per chiudere definitivamente l'applicazione, l'<i><u>amministratore</u></i> clicchi il <b>link</b> sottostante e successivamente inserisca username e password.</center></html>");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(100, 230, 740, 80);
+		lblNewLabel_3.setBounds(100, 260, 740, 80);
 		add(lblNewLabel_3);
 		
 		JLabel link1 = new JLabel("<html><body><a href=\\\"\\\">crea e visualizza documento↗︎</a></body></html>");
-		link1.setLocation(0, 205);
+		link1.setLocation(0, 235);
 		link1.setSize(940, 40);
 		link1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		link1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -73,7 +73,7 @@ public class ClosingPanel extends JPanel {
 		add(link1);
 		JLabel link2 = new JLabel("<html><body><a href=\\\"\\\">chiudi definitivamente applicazione↗︎</a></body></html>");
 		link2.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		link2.setLocation(0, 300);
+		link2.setLocation(0, 330);
 		link2.setSize(940, 40);
 		link2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		link2.setHorizontalAlignment(SwingConstants.CENTER);
