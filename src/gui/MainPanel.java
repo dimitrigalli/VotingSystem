@@ -18,7 +18,7 @@ import time.DigitalClock;
  *
  */
 public class MainPanel extends JPanel {
-
+	
 	private static final long serialVersionUID = 1L;
 	private BufferedImage image1;
 	private BufferedImage image2;

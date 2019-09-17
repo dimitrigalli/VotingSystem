@@ -93,7 +93,6 @@ public class ElettoreLoginPanel extends JPanel {
 				else {
 					textField.setText("");
 					if (JOptionPane.showConfirmDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN ELETTORE ED ISTRUZIONI IMPORTANTI SU COME VOTARE</font></b><br><br><font size=\"4\"><center><u>• SI PREGA DI CONFERMARE LA PROPRIA IDENTITÀ</u><br><br><b><p style='color: red'>"+elettore.getNome()+" "+elettore.getCognome()+"</p></b><br>nata/o il <b>"+elettore.getDataDiNascita()+"</b> presso <b>"+elettore.getLuogoDiNascita()+"</b> residente presso <b>"+elettore.getResidenza()+"</b><br><br><u>• SI PREGA DI LEGGERE ATTENTAMENTE LE ISTRUZIONI CHE SEGUONO</u><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\" nel riquardo del<br>partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima selezionare il candidato<br>dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.<br><br><i>Il tuo voto rimarrà ANONIMO. Hai tempo per votare fino alle <b>23:00</b></i>.</center></font></html>", "Conferma", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-						JOptionPane.showMessageDialog(null, "Sessione di voto avviata!");
 						CardsPanel cp = new CardsPanel(admin, elettore);
 						cp.switchPanel(mainPanel, "Card 3");
 					}

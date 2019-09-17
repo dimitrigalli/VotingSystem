@@ -116,7 +116,6 @@ public class AdminLoginPanel extends JPanel {
 					passwordField.setText("");//riazzero il campo password
 					if (JOptionPane.showConfirmDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center>Controllare ATTENTAMENTE che tutti i dati riportati sotto siano corretti e coerenti con la presente sezione elettorale.<br><br>In caso di problemi rieffettuare il login cliccando \"Indietro\".<br>Se il problema persiste è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.<br><br>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</center></font<></html>", "Conferma", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
 						new ApplicationTime(mainPanel, admin, elettore);
-						JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente e sessione di voto avviata!");
 						CardsPanel cp = new CardsPanel(admin, elettore);
 						cp.switchPanel(mainPanel, "Card 2");
 					}
