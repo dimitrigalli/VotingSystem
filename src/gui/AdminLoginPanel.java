@@ -19,10 +19,11 @@ import javax.swing.SwingConstants;
 
 import data.Admin;
 import data.Elettore;
+import db.ConnessioneDBAdmin;
 import time.ApplicationTime;
 
 /**
- * @author dimitrigalli
+ * @author dimitrigalli, Danilo Finizio
  *
  */
 public class AdminLoginPanel extends JPanel {
@@ -31,6 +32,10 @@ public class AdminLoginPanel extends JPanel {
 	
 	private JTextField textField;
 	private JPasswordField passwordField;
+	
+	public static String Residenza;
+	public static String Username;
+	public static String Password;
 
 	public AdminLoginPanel(CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
@@ -96,36 +101,51 @@ public class AdminLoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				admin.setUsername(textField.getText());
-				admin.setPassword(passwordField.getText());
-
-				/// CONNESSIONE DB ADMIN(ADMIN, ELETTORE)!!! SISTEMARE COMMENTI E SYSTEM.PRINT !!!
-				
-				Date currentTime = new Date();
-				String formatTimeStr = "kk:mm";
-				DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
-				String formattedTimeStr = formatTime.format(currentTime);
-
-				if (admin.getUsername().isEmpty() || admin.getPassword().isEmpty()) {
+				if (textField.getText().isEmpty() || passwordField.getText().isEmpty()) {
 					textField.setText("");//riazzero il campo username
 					passwordField.setText("");//riazzero il campo password
 					JOptionPane.showMessageDialog(null, "Attenzione: username o password NON inseriti!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					textField.setText("");//riazzero il campo username
-					passwordField.setText("");//riazzero il campo password
-					if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center>Controllare ATTENTAMENTE che tutti i dati riportati sotto siano corretti e coerenti con la presente sezione elettorale.<br><br>In caso di problemi rieffettuare il login cliccando \"Annulla\".<br>Se il problema persiste è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.<br><br>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</center></font<></html>", "ConfirmAdminLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
-						new ApplicationTime(mainPanel, admin, elettore);
-						CardsPanel cp = new CardsPanel(admin, elettore);
-						cp.switchPanel(mainPanel, "Card 2");
+					admin.setUsername(textField.getText());
+					admin.setPassword(passwordField.getText());
+
+					Date currentTime = new Date();
+					String formatTimeStr = "kk:mm";
+					DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
+					String formattedTimeStr = formatTime.format(currentTime);
+
+					try {
+						System.out.println("Attenzione: connessione al DBAdmin in corso!");
+						ConnessioneDBAdmin cda = new ConnessioneDBAdmin(admin);
+						if(cda.isFound()==false) {
+							JOptionPane.showMessageDialog(null, "Attenzione: le credenziali inserite non sono corrette!", "Errore", JOptionPane.ERROR_MESSAGE);
+							System.out.println("Errore: credenziali amministratore errate!");
+							textField.setText("");
+							passwordField.setText("");
+						}
+						else if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center>Controllare ATTENTAMENTE che tutti i dati riportati sotto siano corretti e coerenti con la presente sezione elettorale.<br><br>In caso di problemi rieffettuare il login cliccando \"Annulla\".<br>Se il problema persiste è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.<br><br>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</center></font<></html>", "ConfirmAdminLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
+							new ApplicationTime(mainPanel, admin, elettore);
+							CardsPanel cp = new CardsPanel(admin, elettore);
+							cp.switchPanel(mainPanel, "Card 2");
+							AdminLoginPanel.Username=admin.getUsername();
+							AdminLoginPanel.Password=admin.getPassword();
+							AdminLoginPanel.Residenza=admin.getComuneSezioneElettorale();
+							AdminLoginPanel.Residenza=AdminLoginPanel.Residenza.substring(0, AdminLoginPanel.Residenza.length()-4);
+						}
+						else {
+							textField.setText("");//riazzero il campo username
+							passwordField.setText("");//riazzero il campo password
+							CardsPanel cp = new CardsPanel(admin, elettore);
+							cp.switchPanel(mainPanel, "Card 1");
+						}
 					}
-					else {
-						CardsPanel cp = new CardsPanel(admin, elettore);
-						cp.switchPanel(mainPanel, "Card 1");
+					catch (Exception e1) {
+						e1.printStackTrace();
 					}
 				}
 			}
-			
 		});
 	}
+	
 }

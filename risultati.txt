@@ -1,18 +1,18 @@
 ********** .......... RISULTATI SESSIONE DI VOTO .......... **********
 
-Liga Veneta Repubblica	*****	0
-0 - RIVA GIGI	.....	0
+Liga Veneta Repubblica	*****	1
+0 - RIVA GIGI	.....	1
 1 - MEAZZA GIUSEPPE	.....	0
 2 - PIOLA SILVIO	.....	0
 
-Esseritari	*****	1
-0 - BAGGIO ROBERTO	.....	1
+Esseritari	*****	0
+0 - BAGGIO ROBERTO	.....	0
 1 - DEL PIERO ALESSANDRO	.....	0
 2 - ALTOBELLI ALESSANDRO	.....	0
 
-Stati Uniti d'Europa	*****	1
+Stati Uniti d'Europa	*****	0
 0 - BALONCIERI ADOLFO	.....	0
-1 - INZAGHI FILIPPO	.....	1
+1 - INZAGHI FILIPPO	.....	0
 2 - GRAZIANI FRANCESCO	.....	0
 
 Gilet arancioni - Si cambia musica	*****	0
@@ -30,14 +30,14 @@ PPA - Popolo delle Partite Iva	*****	0
 1 - VIALLI GIANLUCA	.....	0
 2 - COLAUSSI GINO	.....	0
 
-Movimento Poeti d'Azione	*****	1
+Movimento Poeti d'Azione	*****	0
 0 - LIBONATTI JULIO	.....	0
 1 - SCHIAVIO ANGELO	.....	0
 2 - FERRARI GIOVANNI	.....	0
 
-La Catena	*****	1
+La Catena	*****	0
 0 - RIVERA GIANNI	.....	0
-1 - BALOTELLI MARIO	.....	1
+1 - BALOTELLI MARIO	.....	0
 2 - CASIRAGHI PIERLUIGI	.....	0
 
 Sacro Romano Impero Cattolico	*****	0
@@ -45,9 +45,9 @@ Sacro Romano Impero Cattolico	*****	0
 1 - ORSI RAIMUNDO	.....	0
 2 - PIRLO ANDREA	.....	0
 
-Partito internettiano	*****	1
+Partito internettiano	*****	0
 0 - CEVENINI LUIGI	.....	0
-1 - DI NATALE ANTONIO	.....	1
+1 - DI NATALE ANTONIO	.....	0
 2 - LEVRATTO VIRGILIO FELICE	.....	0
 
 Ora rispetto per tutti gli animali	*****	0
@@ -55,4 +55,4 @@ Ora rispetto per tutti gli animali	*****	0
 1 - CASSANO ANTONIO	.....	0
 2 - ZOLA GIANFRANCO	.....	0
 
-NUMERO SCHEDE BIANCHE	1 --- NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)	6
+NUMERO SCHEDE BIANCHE	1 --- NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)	2

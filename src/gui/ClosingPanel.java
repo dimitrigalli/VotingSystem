@@ -96,9 +96,10 @@ public class ClosingPanel extends JPanel {
 		panel.add(controls, BorderLayout.CENTER);
 		
 		link1.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					//if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+					if (username.getText().equals(AdminLoginPanel.Username)==true && password.getText().equals(AdminLoginPanel.Password) == true) {
 						username.setText("");
 						password.setText("");
 						PrintWriter out;
@@ -127,28 +128,29 @@ public class ClosingPanel extends JPanel {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					//}
-					//else {
-					//	username.setText("");
-					//	password.setText("");
-					//	JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
-					//}
+					}
+					else {
+						username.setText("");
+						password.setText("");
+						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
+					}
 			    }
 			}
 		});
 		link2.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - chiudi definitivamente applicazione", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					//if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+					if (username.getText().equals(AdminLoginPanel.Username)==true && password.getText().equals(AdminLoginPanel.Password) == true) {
 						username.setText("");
 						password.setText("");
 						System.exit(0);
-					//}
-					//else {
-					//	username.setText("");
-					//	password.setText("");
-					//	JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
-					//}
+					}
+					else {
+						username.setText("");
+						password.setText("");
+						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});		
