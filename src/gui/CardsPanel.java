@@ -18,27 +18,19 @@ public class CardsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Admin admin;
-	private Elettore elettore;
-	
 	private VotingPanel vp;
 
-	public CardsPanel() {
+	public CardsPanel(Admin admin, Elettore elettore) {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(new CardLayout());
 		setLocation(240, 20);
 		setSize(940, 470);
 		
-		admin = new Admin();
-		elettore = new Elettore();
-		
-		add(new AdminLoginPanel(this, admin), "Card 1");
-		add(new ConfirmAdminLoginPanel(this, admin), "Card 2");
-		add(new ElettoreLoginPanel(this, admin, elettore), "Card 3");
-		add(new ConfirmElettoreLoginPanel(this, elettore), "Card 4");
-		vp = new VotingPanel(this, elettore);
-		add(vp, "Card 5");
-		add(new ClosingPanel(this, vp, admin), "Card 6");
+		add(new AdminLoginPanel(this, admin, elettore), "Card 1");
+		add(new ElettoreLoginPanel(this, admin, elettore), "Card 2");
+		vp = new VotingPanel(this, admin, elettore);
+		add(vp, "Card 3");
+		add(new ClosingPanel(this, vp, admin, elettore), "Card 4");
 	}
 	
 	public void switchPanel(Container container, String panelName) {

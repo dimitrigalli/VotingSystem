@@ -10,11 +10,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import data.Admin;
+import data.Elettore;
+import time.ApplicationTime;
 
 /**
  * @author dimitrigalli
@@ -27,7 +32,7 @@ public class AdminLoginPanel extends JPanel {
 	private JTextField textField;
 	private JPasswordField passwordField;
 
-	public AdminLoginPanel(CardsPanel mainPanel, Admin admin) {
+	public AdminLoginPanel(CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -87,27 +92,38 @@ public class AdminLoginPanel extends JPanel {
 		
 		button.addActionListener(new ActionListener() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				admin.setUsername(textField.getText());
-				admin.setPassword(password.getText());
+				admin.setPassword(passwordField.getText());
+
+				/// CONNESSIONE DB ADMIN(ADMIN, ELETTORE)!!! SISTEMARE COMMENTI E SYSTEM.PRINT !!!
 				
-				//Chiamata al costruttore ConnessioneDBAdmin passando come UNICO PARAMETRO admin!!! In ConnessioneDBAdmin cerco l'
-				//amministratore e se lo trovo inizializzo con set gli attributi di admin; se non lo trovo devo generare messaggio
-				//di errore indicando che l'admin non è presente nel DB!
-				
+				Date currentTime = new Date();
+				String formatTimeStr = "kk:mm";
+				DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
+				String formattedTimeStr = formatTime.format(currentTime);
+
 				if (admin.getUsername().isEmpty() || admin.getPassword().isEmpty()) {
 					textField.setText("");//riazzero il campo username
 					passwordField.setText("");//riazzero il campo password
 					JOptionPane.showMessageDialog(null, "Attenzione: username o password NON inseriti!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-				textField.setText("");//riazzero il campo username
-				passwordField.setText("");//riazzero il campo password
-				JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
-				CardsPanel cp = new CardsPanel();
-				cp.switchPanel(mainPanel, "Card 2");
+					textField.setText("");//riazzero il campo username
+					passwordField.setText("");//riazzero il campo password
+					if (JOptionPane.showConfirmDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center>Controllare ATTENTAMENTE che tutti i dati riportati sotto siano corretti e coerenti con la presente sezione elettorale.<br><br>In caso di problemi rieffettuare il login cliccando \"Indietro\".<br>Se il problema persiste è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.<br><br>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</center></font<></html>", "Conferma", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+						new ApplicationTime(mainPanel, admin, elettore);
+						JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente e sessione di voto avviata!");
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
+					}
+					else {
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 1");
+					}
 				}
 			}
 			

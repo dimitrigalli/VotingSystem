@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import data.Admin;
 import data.Candidato;
+import data.Elettore;
 import data.Partito;
 
 /**
@@ -36,7 +37,7 @@ public class ClosingPanel extends JPanel {
 	
 	private int numeroTotaleVotanti = 0;
 	
-	public ClosingPanel(CardsPanel mainPanel, VotingPanel vp, Admin admin) {
+	public ClosingPanel(CardsPanel mainPanel, VotingPanel vp, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
@@ -79,8 +80,6 @@ public class ClosingPanel extends JPanel {
 		link1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		add(link2);
 		
-		//Chiamata al costruttore della classe che dovrà salvare i risultati della sessione di voto nel DataBase!!!
-		
 		JPanel panel = new JPanel(new BorderLayout(8, 8));
 		panel.setPreferredSize(new Dimension(300, 70));
 		
@@ -97,10 +96,9 @@ public class ClosingPanel extends JPanel {
 		panel.add(controls, BorderLayout.CENTER);
 		
 		link1.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+					//if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
 						username.setText("");
 						password.setText("");
 						PrintWriter out;
@@ -129,29 +127,28 @@ public class ClosingPanel extends JPanel {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}
-					else {
-						username.setText("");
-						password.setText("");
-						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
-					}
+					//}
+					//else {
+					//	username.setText("");
+					//	password.setText("");
+					//	JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
+					//}
 			    }
 			}
 		});
 		link2.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - chiudi definitivamente applicazione", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
+					//if (username.getText() == admin.getUsername() && password.getText() == admin.getPassword()) {
 						username.setText("");
 						password.setText("");
 						System.exit(0);
-					}
-					else {
-						username.setText("");
-						password.setText("");
-						JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
-					}
+					//}
+					//else {
+					//	username.setText("");
+					//	password.setText("");
+					//	JOptionPane.showMessageDialog(null, "Attenzione: username e/o password inseriti NON CORRETTI!", "Errore", JOptionPane.ERROR_MESSAGE);
+					//}
 				}
 			}
 		});		

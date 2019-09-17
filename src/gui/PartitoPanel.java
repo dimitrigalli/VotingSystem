@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import data.Admin;
 import data.Candidato;
 import data.Elettore;
 import data.Partito;
@@ -37,7 +38,7 @@ public class PartitoPanel extends JPanel {
 	private BufferedImage img;
 	private String noPreferenza = new String("*nessuna preferenza*");
 
-	public PartitoPanel(Partito partito, CardsPanel mainPanel, ArrayList<Partito> listaPartiti, int index, Elettore elettore) {
+	public PartitoPanel(Partito partito, CardsPanel mainPanel, ArrayList<Partito> listaPartiti, int index, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setLayout(null);
@@ -90,8 +91,8 @@ public class PartitoPanel extends JPanel {
 						listaPartiti.set(index, partito);
 						elettore.setHasVoted(true);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
-						CardsPanel cp = new CardsPanel();
-						cp.switchPanel(mainPanel, "Card 3");
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
 						
 					}
 				}
@@ -113,8 +114,8 @@ public class PartitoPanel extends JPanel {
 						listaPartiti.set(index, partito);
 						elettore.setHasVoted(true);
 						JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
-						CardsPanel cp = new CardsPanel();
-						cp.switchPanel(mainPanel, "Card 3");
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
 					}
 				}
 			}

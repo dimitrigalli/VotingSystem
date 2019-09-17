@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,33 +68,39 @@ public class ElettoreLoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				elettore.setNumeroTesseraElettorale(textField.getText().getBytes());
+				elettore.setNumeroTesseraElettorale(textField.getText());
 				
-			////Chiamata al costruttore ConnessioneDBElettore passando come UNICO PARAMETRO elettore!!! In ConnessioneDBElettore cerco l'
-				//elettore e se lo trovo inizializzo con set gli attributi di elettore; se non lo trovo devo generare messaggio
-				//di errore indicando che l'elettore non è presente nel DB!
+				/// CONNESSIONE DB ELETTORE(ADMIN, ELETTORE)!!! SISTEMARE COMMENTI E SYSTEM.PRINT !!!
+				/// RICORDATI DI SETTARE IL NUMERO E IL COMUNE DELLA SEZIONE ELETTORALE ALL'ADMIN PER CONTROLLO SEZIONE POI RIMUOVI COMMENTO (RIGA 85-86-87-88)!!!
+				/// L'ELETTORE DEVE NON AVERE GIA VOTATO !!!
 				
-				if (elettore.getNumeroTesseraElettorale().toString().isEmpty()) {
+				if (elettore.getNumeroTesseraElettorale().isEmpty()) {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
-				else if (elettore.getNumeroTesseraElettorale().length != 9) {
+				else if (elettore.getNumeroTesseraElettorale().length() != 9) {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito correttamente!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
-				else if (elettore.getNumeroSezioneListaElettorale() != admin.getNumeroSezioneElettorale() || !(elettore.getResidenza().equals(admin.getComuneSezioneElettorale())) ) {
-					textField.setText("");
-					JOptionPane.showMessageDialog(null, "Attenzione: il numero e/o il comune della sezione della scheda elettorale inserita non coincidono/coincide con quelli/quello della presente sezione!", "Errore", JOptionPane.ERROR_MESSAGE);
-				}
-				else if (elettore.isHasVoted()) {
-					textField.setText("");
-					JOptionPane.showMessageDialog(null, "Attenzione: l'elettore inserito risulta abbia già votato. Non è possibile votare due o più volte!", "Errore", JOptionPane.ERROR_MESSAGE);
-				}
+				//else if (elettore.getNumeroSezioneListaElettorale() != admin.getNumeroSezioneElettorale() || !(elettore.getResidenza().equals(admin.getComuneSezioneElettorale())) ) {
+				//	textField.setText("");
+				//	JOptionPane.showMessageDialog(null, "Attenzione: il numero e/o il comune della sezione della scheda elettorale inserita non coincidono/coincide con quelli/quello della presente sezione!", "Errore", JOptionPane.ERROR_MESSAGE);
+				//}
+				//else if (elettore.isHasVoted()) {
+				//	textField.setText("");
+				//	JOptionPane.showMessageDialog(null, "Attenzione: l'elettore inserito risulta abbia già votato. Non è possibile votare due o più volte!", "Errore", JOptionPane.ERROR_MESSAGE);
+				//}
 				else {
 					textField.setText("");
-					JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
-					CardsPanel cp = new CardsPanel();
-					cp.switchPanel(mainPanel, "Card 4");
+					if (JOptionPane.showConfirmDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN ELETTORE ED ISTRUZIONI IMPORTANTI SU COME VOTARE</font></b><br><br><font size=\"4\"><center><u>• SI PREGA DI CONFERMARE LA PROPRIA IDENTITÀ</u><br><br><b><p style='color: red'>"+elettore.getNome()+" "+elettore.getCognome()+"</p></b><br>nata/o il <b>"+elettore.getDataDiNascita()+"</b> presso <b>"+elettore.getLuogoDiNascita()+"</b> residente presso <b>"+elettore.getResidenza()+"</b><br><br><u>• SI PREGA DI LEGGERE ATTENTAMENTE LE ISTRUZIONI CHE SEGUONO</u><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\" nel riquardo del<br>partito senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima selezionare il candidato<br>dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.<br><br><i>Il tuo voto rimarrà ANONIMO. Hai tempo per votare fino alle <b>23:00</b></i>.</center></font></html>", "Conferma", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+						JOptionPane.showMessageDialog(null, "Sessione di voto avviata!");
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 3");
+					}
+					else {
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
+					}
 				}
 			}
 			

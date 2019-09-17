@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
+import data.Admin;
 import data.Candidato;
 import data.Elettore;
 import data.ListeCandidatiPartiti;
@@ -25,7 +26,7 @@ public class VotingPanel extends JPanel {
 	private ListeCandidatiPartiti liste = new ListeCandidatiPartiti();
 	private SchedaBianca schedeBianche = new SchedaBianca();
 	
-	public VotingPanel(CardsPanel mainPanel, Elettore elettore) {
+	public VotingPanel(CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(new GridLayout(4,3));
 		
@@ -34,10 +35,10 @@ public class VotingPanel extends JPanel {
 		int index = 0;
 		Iterator<Partito> i = listaPartiti.iterator();
 		while (i.hasNext()) {
-			add(new PartitoPanel(i.next(), mainPanel, listaPartiti, index, elettore));
+			add(new PartitoPanel(i.next(), mainPanel, listaPartiti, index, admin, elettore));
 			index++;
 		}
-		add(new SchedaBiancaPanel(schedeBianche, mainPanel, elettore));
+		add(new SchedaBiancaPanel(schedeBianche, mainPanel, admin, elettore));
 	}
 
 	public ArrayList<Partito> getListaPartiti() {

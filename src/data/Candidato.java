@@ -25,8 +25,6 @@ public class Candidato {
 		return numeroCandidato + " - " + cognome + " " + nome;
 	}
 	
-	
-	
 	public int getNumeroPreferenzeCandidato() {
 		return numeroPreferenzeCandidato;
 	}

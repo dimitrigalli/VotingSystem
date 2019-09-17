@@ -64,4 +64,5 @@ public class Partito {
 	public void addVoto() {
 		this.numeroPreferenzePartito = numeroPreferenzePartito + 1;
 	}
+	
 }

@@ -13,9 +13,9 @@ public class Admin {
 	private int numeroSezioneElettorale;
 	private String comuneSezioneElettorale;
 	
-	private Elettore presidente;
-	private Elettore segretario;
-	private Elettore scrutatore;
+	private Elettore presidente = new Elettore();
+	private Elettore segretario = new Elettore();
+	private Elettore scrutatore = new Elettore();
 	
 	public String getUsername() {
 		return username;

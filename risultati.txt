@@ -1,12 +1,12 @@
 ********** .......... RISULTATI SESSIONE DI VOTO .......... **********
 
-Liga Veneta Repubblica	*****	0
+Liga Veneta Repubblica	*****	3
 0 - RIVA GIGI	.....	0
 1 - MEAZZA GIUSEPPE	.....	0
 2 - PIOLA SILVIO	.....	0
 
-Esseritari	*****	0
-0 - BAGGIO ROBERTO	.....	0
+Esseritari	*****	1
+0 - BAGGIO ROBERTO	.....	1
 1 - DEL PIERO ALESSANDRO	.....	0
 2 - ALTOBELLI ALESSANDRO	.....	0
 
@@ -55,4 +55,4 @@ Ora rispetto per tutti gli animali	*****	0
 1 - CASSANO ANTONIO	.....	0
 2 - ZOLA GIANFRANCO	.....	0
 
-NUMERO SCHEDE BIANCHE	0 --- NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)	0
+NUMERO SCHEDE BIANCHE	0 --- NUMERO TOTALE VOTANTI (COMPRESE SCHEDE BIANCHE)	4

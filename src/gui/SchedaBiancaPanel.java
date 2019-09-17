@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import data.Admin;
 import data.Elettore;
 import data.SchedaBianca;
 
@@ -21,7 +22,7 @@ public class SchedaBiancaPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String buttonMessage = new String("<html><b>VOTA <i>SCHEDA BIANCA</i></b></html>");
 
-	public SchedaBiancaPanel(SchedaBianca schedeBianche, CardsPanel mainPanel, Elettore elettore) {
+	public SchedaBiancaPanel(SchedaBianca schedeBianche, CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
 		JButton button = new JButton(buttonMessage);
@@ -35,8 +36,8 @@ public class SchedaBiancaPanel extends JPanel {
 					schedeBianche.addSchedaBianca();
 					elettore.setHasVoted(true);
 					JOptionPane.showMessageDialog(null, "Il tuo voto anonimo è stato inserito! Grazie per aver votato.");
-					CardsPanel cp = new CardsPanel();
-					cp.switchPanel(mainPanel, "Card 3");
+					CardsPanel cp = new CardsPanel(admin, elettore);
+					cp.switchPanel(mainPanel, "Card 2");
 				}
 					
 			}
