@@ -1,7 +1,7 @@
 ********** .......... RISULTATI SESSIONE DI VOTO .......... **********
 
-Liga Veneta Repubblica	*****	1
-0 - RIVA GIGI	.....	1
+Liga Veneta Repubblica	*****	0
+0 - RIVA GIGI	.....	0
 1 - MEAZZA GIUSEPPE	.....	0
 2 - PIOLA SILVIO	.....	0
 
@@ -45,8 +45,8 @@ Sacro Romano Impero Cattolico	*****	0
 1 - ORSI RAIMUNDO	.....	0
 2 - PIRLO ANDREA	.....	0
 
-Partito internettiano	*****	0
-0 - CEVENINI LUIGI	.....	0
+Partito internettiano	*****	1
+0 - CEVENINI LUIGI	.....	1
 1 - DI NATALE ANTONIO	.....	0
 2 - LEVRATTO VIRGILIO FELICE	.....	0
 

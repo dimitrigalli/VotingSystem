@@ -98,9 +98,11 @@ public class ElettoreLoginPanel extends JPanel {
 							try {
 								System.out.println("Attenzione: connessione al SetHasVotedDB in corso!");
 								SetHasVotedDB shv = new SetHasVotedDB(elettore, AdminLoginPanel.Residenza);
-								if(shv.isFound()==false)
+								if(shv.isFound()==false) {
 									System.out.println("Errore: impossibile identificare l'elettore!");
-
+									JOptionPane.showMessageDialog(null, "Errore: impossibile identificare l'elettore! L'app sarà chiusa.", "Errore", JOptionPane.ERROR_MESSAGE);
+									System.exit(3);
+								}
 							}
 							catch (SQLException e1) {
 								// TODO Auto-generated catch block

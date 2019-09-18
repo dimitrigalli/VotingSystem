@@ -144,6 +144,7 @@ public class ClosingPanel extends JPanel {
 					if (username.getText().equals(AdminLoginPanel.Username)==true && password.getText().equals(AdminLoginPanel.Password) == true) {
 						username.setText("");
 						password.setText("");
+						System.out.println("Sessione di voto conclusa. L'applicazione è terminata.");
 						System.exit(0);
 					}
 					else {
