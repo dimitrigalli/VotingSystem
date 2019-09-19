@@ -32,7 +32,7 @@ public class SetHasVotedDB {
 
 			boolean rs1=statement.execute(query1);
 			if(rs1==true) {
-				System.out.println("Errore: impossibile aggiornare la colonna VOTO!");
+				System.out.println("Errore nel settaggio sulla colonna VOTO");
 			}
 			found=true;
 		}

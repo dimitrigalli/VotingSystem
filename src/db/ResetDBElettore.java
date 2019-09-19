@@ -27,13 +27,13 @@ public class ResetDBElettore {
 			String query3 =" update ELETTORI_PIEVEPELAGO SET VOTO=0";
 			boolean rs1=statement.execute(query1);
 			if(rs1==true)
-				System.out.println("Errore nel reset dei voti su ELETTORI_MODENA!");
+				System.out.println("Errore nel reset dei voti su ELETTORI_MODENA");
 			boolean rs2=statement.execute(query2);
 			if(rs2==true)
-				System.out.println("Errore nel reset dei voti su ELETTORI_ORTONA!");
+				System.out.println("Errore nel reset dei voti su ELETTORI_ORTONA");
 			boolean rs3=statement.execute(query3);
 			if(rs3==true)
-				System.out.println("Errore nel reset dei voti su ELETTORI_PIEVEPELAGO!");
+				System.out.println("Errore nel reset dei voti su ELETTORI_PIEVEPELAGO");
 			
 			found=true;
 		}

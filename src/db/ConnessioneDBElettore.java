@@ -39,7 +39,7 @@ public class ConnessioneDBElettore {
 			while(rs1.next()) {
 				elettore.setNome(rs1.getString(1));
 				elettore.setCognome(rs1.getString(2));
-				Date data=rs1.getDate(4);
+				Date data=rs1.getDate(4);//data
 				elettore.setResidenza(rs1.getString(7));
 				elettore.setLuogoDiNascita(rs1.getString(6));
 				int voto = rs1.getInt(12);

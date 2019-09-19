@@ -26,6 +26,7 @@ public class ResetDBPartito {
 			boolean rs1=statement.execute(query1);
 			if(rs1==true)
 				System.out.println("Errore nel reset dei voti dei partiti e dei loro candidati!");
+
 			found=true;
 		}
 		catch(Exception e) {
