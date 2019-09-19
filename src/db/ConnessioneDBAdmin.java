@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 import data.Admin;
 
 /**Classe utilizzata per controllare che le credenziali inserite dall'utente admin(nome_utente e password)
@@ -66,7 +64,6 @@ public class ConnessioneDBAdmin {
 						admin.getScrutatore().setCognome(rs3.getString(2));
 					}
 
-					JOptionPane.showMessageDialog(null, "Accesso eseguito correttamente!");
 					break;
 				}
 			}

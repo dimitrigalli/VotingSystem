@@ -46,54 +46,48 @@ public class AdminLoginPanel extends JPanel {
 		lblNewLabel.setBounds(15, 15, 400, 30);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html><center>L'amministratore effettui il login attraverso i dati di username e password riportati sul plico telematico della sezione.</center></html>");
+		JLabel lblNewLabel_1 = new JLabel("<html><center>Effettuare il login inserendo i dati di <b>username</b> e <b>password</b> riportati sul plico telematico della sezione.</center></html>");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(120, 40, 700, 100);
+		lblNewLabel_1.setBounds(120, 70, 700, 100);
 		add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("<html><center>Si ricorda che cliccando su \"AVANTI\" la sessione di voto NON verrà ancora avviata.</center></html>");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(120, 100, 700, 100);
-		add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("<html><center>In caso di problemi è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.</center></html>");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(120, 160, 700, 100);
-		add(lblNewLabel_3);
 		
 		JLabel username = new JLabel("<html><center>Username</center></html>");
 		username.setHorizontalAlignment(SwingConstants.CENTER);
 		username.setFont(new Font("Lucida Grande", Font.ITALIC, 18));
-		username.setBounds(425, 250, 90, 30);
+		username.setBounds(425, 170, 90, 30);
 		add(username);
-		
-		JLabel password = new JLabel("<html><center>Password</center></html>");
-		password.setHorizontalAlignment(SwingConstants.CENTER);
-		password.setFont(new Font("Lucida Grande", Font.ITALIC, 18));
-		password.setBounds(425, 320, 90, 30);
-		add(password);
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		textField.setBounds(320, 285, 300, 30);
+		textField.setBounds(320, 200, 300, 30);
 		add(textField);
 		textField.setColumns(10);
+		
+		JLabel password = new JLabel("<html><center>Password</center></html>");
+		password.setHorizontalAlignment(SwingConstants.CENTER);
+		password.setFont(new Font("Lucida Grande", Font.ITALIC, 18));
+		password.setBounds(425, 250, 90, 30);
+		add(password);
 		
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		passwordField.setBounds(320, 355, 300, 30);
+		passwordField.setBounds(320, 280, 300, 30);
 		add(passwordField);
 		passwordField.setColumns(10);
 		
 		JButton button = new JButton("AVANTI");
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-		button.setBounds(410, 410, 120, 30);
+		button.setBounds(410, 330, 120, 30);
 		add(button);
+		
+		JLabel lblNewLabel_2 = new JLabel("<html><center>In caso di <b>problemi</b> contattare il responsabile dell'ufficio elettorale della sezione.</center></html>");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.ITALIC, 16));
+		lblNewLabel_2.setBounds(120, 360, 700, 100);
+		add(lblNewLabel_2);
 		
 		button.addActionListener(new ActionListener() {
 
@@ -124,7 +118,7 @@ public class AdminLoginPanel extends JPanel {
 							textField.setText("");
 							passwordField.setText("");
 						}
-						else if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center>Controllare ATTENTAMENTE che tutti i dati riportati sotto siano corretti e coerenti con la presente sezione elettorale.<br><br>In caso di problemi rieffettuare il login cliccando \"Annulla\".<br>Se il problema persiste è OBBLIGATORIO contattare il responsabile dell'ufficio elettorale della sezione.<br><br>SEZIONE ELETTORALE N.<b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br>→ PRESIDENTE DELLA SEZIONE: <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br>→ SEGRETARIO DELLA SEZIONE: <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br>→ SCRUTATORE DELLA SEZIONE: <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</center></font<></html>", "ConfirmAdminLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
+						else if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN AMMINISTRATORE</font></b><br><br><font size=\"4\"><center><u>• CONFERMARE I DATI DELLA SEZIONE ELETTORALE</u><br><br>SEZIONE ELETTORALE NUMERO <b>"+admin.getNumeroSezioneElettorale()+"</b> DEL COMUNE DI <b>"+admin.getComuneSezioneElettorale()+"</b><br><br></center>→ PERSONALE ADDETTO ALLA <b>PRESIDENZA</b> DELLA SEZIONE: sig.ra./sig. <font color=\"red\"><b>"+admin.getPresidente().getNome()+" "+admin.getPresidente().getCognome()+"</b></font><br><br>→ PERSONALE ADDETTO ALLA <b>SEGRETERIA</b> DELLA SEZIONE: sig.ra./sig. <b>"+admin.getSegretario().getNome()+" "+admin.getSegretario().getCognome()+"</b><br><br>→ PERSONALE ADDETTO ALLO <b>SCRUTINIO</b> DELLA SEZIONE: sig.ra./sig. <b>"+admin.getScrutatore().getNome()+" "+admin.getScrutatore().getCognome()+"</b><br><br><center><i>La sessione di voto verrà aperta alle ore <b>"+formattedTimeStr+"</b> e verrà chiusa alle ore <b>23:00</b>.</i></center></font<></html>", "ConfirmAdminLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
 							new ApplicationTime(mainPanel, admin, elettore);
 							CardsPanel cp = new CardsPanel(admin, elettore);
 							cp.switchPanel(mainPanel, "Card 2");
