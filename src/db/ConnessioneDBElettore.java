@@ -28,7 +28,7 @@ public class ConnessioneDBElettore {
 		Connection c = null;
 		Statement statement = null;
 		try {
-			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=VOTO;user=Danitri;password=Danitri-12";
+			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=VOTO;user=Danitri;password=Danitri-12;";
 			c = DriverManager.getConnection(url);
 			System.out.println("Connesso (elettore)!");
 			statement = c.createStatement();

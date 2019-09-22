@@ -24,7 +24,7 @@ public class SetHasVotedDB {
 		Connection c = null;
 		Statement statement = null;
 		try {
-			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=VOTO;user=Danitri;password=Danitri-12";//votazione � il nome del db
+			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=VOTO;user=Danitri;password=Danitri-12";
 			c = DriverManager.getConnection(url);
 			System.out.println("Connesso (SetHasVotedDB)!");
 			statement = c.createStatement();

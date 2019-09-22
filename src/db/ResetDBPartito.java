@@ -10,6 +10,7 @@ import java.sql.Statement;
  *@author Danilo Finizio
  *
  */
+
 public class ResetDBPartito {
 
 	private boolean found=false;
@@ -18,7 +19,7 @@ public class ResetDBPartito {
 		Connection c = null;
 		Statement statement = null;
 		try {
-			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=PARTITO;user=Danitri;password=Danitri-12";//votazione � il nome del db
+			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=PARTITO;user=Danitri;password=Danitri-12";
 			c = DriverManager.getConnection(url);
 			System.out.println("Connesso per ResetDBPartito!");
 			statement = c.createStatement();
