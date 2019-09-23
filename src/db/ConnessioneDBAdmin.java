@@ -32,8 +32,12 @@ public class ConnessioneDBAdmin {
 		Statement statement = null;
 		
 		try {
-			String url = "jdbc:sqlserver://thedailytesticle.servebeer.com:1433;databaseName=VOTO;user=Danitri;password=Danitri-12";
-			c = DriverManager.getConnection(url);
+			String driver = "com.mysql.cj.jdbc.Driver";
+			String url = "jdbc:mysql://212.237.20.175:3306/DBDanilo?serverTimezone=GMT";
+			String username = "Danilo";
+			String password = "Beewolf98";
+			Class.forName(driver);
+			c = DriverManager.getConnection(url,username,password);
 			System.out.println("Connesso (amministratore)!");
 			statement = c.createStatement();	
 			String query1 = "SELECT * FROM PRESIDENTI where NOME_UTENTE='"+nome_utente+"'"+" AND PASSWORD ='"+passwd_utente+"'";
