@@ -23,6 +23,7 @@ public class DigitalClock extends JPanel {
 	Timer updateTimer;
 	int DELAY = 100;
 	private String Day, Month, DateStr;
+	private Date currentDate;
 
 	public DigitalClock() {
 		GridLayout gridLayout = new GridLayout(2, 1, 0, -30);
@@ -34,7 +35,7 @@ public class DigitalClock extends JPanel {
 		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(timeLabel);
 		
-		Date currentDate = new Date();
+		currentDate = new Date();
 		@SuppressWarnings("deprecation")
 		int day = currentDate.getDay();
 		if (day == 0) Day = new String("Domenica");

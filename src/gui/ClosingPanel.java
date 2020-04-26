@@ -98,7 +98,7 @@ public class ClosingPanel extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - Crea e visualizza documento", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					if (username.getText().equals(AdminLoginPanel.Username)==true && password.getText().equals(AdminLoginPanel.Password) == true) {
+					if (username.getText().equals("local")==true && password.getText().equals("local") == true) {
 						username.setText("");
 						password.setText("");
 						PrintWriter out;
@@ -140,7 +140,7 @@ public class ClosingPanel extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, panel, "Finestra - chiudi definitivamente applicazione", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-					if (username.getText().equals(AdminLoginPanel.Username)==true && password.getText().equals(AdminLoginPanel.Password) == true) {
+					if (username.getText().equals("local")==true && password.getText().equals("local") == true) {
 						username.setText("");
 						password.setText("");
 						System.out.println("Sessione di voto conclusa. L'applicazione è terminata.");

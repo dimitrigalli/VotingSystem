@@ -22,6 +22,15 @@ public class Elettore {
 	private int numeroSezioneListaElettorale;
 	private boolean hasVoted = false;
 	
+	public Elettore() {
+		
+	}
+	
+	public Elettore(String nome, String cognome) {
+		this.nome = nome;
+		this.cognome = cognome;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

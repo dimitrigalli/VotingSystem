@@ -12,7 +12,6 @@ import data.Admin;
 import data.Candidato;
 import data.Elettore;
 import data.Partito;
-import db.ConnessioneDBPartito;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,7 +30,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 /**
- * @author dimitrigalli, Danilo Finizio
+ * @author dimitrigalli
  *
  */
 public class PartitoPanel extends JPanel {
@@ -82,8 +81,6 @@ public class PartitoPanel extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
-			int n = -1;
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -94,18 +91,9 @@ public class PartitoPanel extends JPanel {
 						System.out.println(partito.getNome() +" *** "+ partito.getNumeroPreferenzePartito());
 						listaPartiti.set(index, partito);
 						elettore.setHasVoted(true);
-						System.out.println("Attenzione: connessione al DBPartito in corso!");
-						ConnessioneDBPartito cdbp = new ConnessioneDBPartito(partito.getNome(),partito.getNumeroPreferenzePartito(),sceltaCandidato,-1);
-						if(cdbp.isFound()==false) {
-							System.out.println("Errore: impossibile aggiornare i voti dei partiti!");
-							JOptionPane.showMessageDialog(null, "Attenzione: impossibile aggiornare i voti dei partiti! L'app sarà chiusa.", "Errore", JOptionPane.ERROR_MESSAGE);
-							System.exit(4);
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "<html>Il tuo voto anonimo è stato inserito! Grazie per aver votato.<br>I voti sono stati correttamente aggiornati nel DB!</html>");
-							CardsPanel cp = new CardsPanel(admin, elettore);
-							cp.switchPanel(mainPanel, "Card 2");
-						}
+						JOptionPane.showMessageDialog(null, "<html>Il tuo voto anonimo è stato inserito! Grazie per aver votato.<br>I voti sono stati correttamente aggiornati nel DB!</html>");
+						CardsPanel cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
 					}
 				}
 				else {
@@ -119,24 +107,16 @@ public class PartitoPanel extends JPanel {
 								c.addVotoCandidato();
 								partito.getListaCandidati().set(count, c);
 								System.out.println(c.toString() +" ... "+ partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato());
-								n=partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato();
+								partito.getListaCandidati().get(count).getNumeroPreferenzeCandidato();
 							}
 							count++;
 						}
 						comboBox.setSelectedItem(partito.getListaStringheCandidati(partito.getListaCandidati()).get(0));
 						listaPartiti.set(index, partito);
 						elettore.setHasVoted(true);
-						ConnessioneDBPartito cdbp = new ConnessioneDBPartito(partito.getNome(),partito.getNumeroPreferenzePartito(),sceltaCandidato,n);
-						if(cdbp.isFound()==false) {
-							System.out.println("Errore: impossibile aggiornare i voti dei partiti!");
-							JOptionPane.showMessageDialog(null, "Attenzione: impossibile aggiornare i voti dei partiti! L'app sarà chiusa.", "Errore", JOptionPane.ERROR_MESSAGE);
-							System.exit(4);
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "<html>Il tuo voto anonimo è stato inserito! Grazie per aver votato.<br>I voti sono stati correttamente aggiornati nel DB!</html>");
+						JOptionPane.showMessageDialog(null, "<html>Il tuo voto anonimo è stato inserito! Grazie per aver votato.<br>I voti sono stati correttamente aggiornati nel DB!</html>");
 							CardsPanel cp = new CardsPanel(admin, elettore);
 							cp.switchPanel(mainPanel, "Card 2");
-						}
 					}
 				}
 			}

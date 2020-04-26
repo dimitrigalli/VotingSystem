@@ -1,32 +1,8 @@
-	CREDENZIALI ADMIN ED ELETTORE PER TESTARE L'APPLICAZIONE
+	ISTRUZIONI TESTING VOTINGSYSTEM
 	
-	ADMIN Username: moira.carbone
-	ADMIN Password: 12345678
-	ADMIN Comune: MODENA(MO)
-	---------------------------------------------------
-	ADMIN Username: graziella.mosca
-	ADMIN Password: 12345678
-	ADMIN Comune: ORTONA(CH)
-	---------------------------------------------------
-	ADMIN Username: basilio.luciani
-	ADMIN Password: 12345678
-	ADMIN Comune: PIEVEPELAGO(MO)
-	---------------------------------------------------
-	ELETTORE Tessera: 126059375
-	ELETTORE Nome, cognome, residenza: MARIASOLE LORENZI, MODENA(MO)
-	---------------------------------------------------
-	ELETTORE Tessera: 109834754
-	ELETTORE Nome, cognome, residenza: GIAMPIERO MICHELI, MODENA(MO)
-	---------------------------------------------------
-	ELETTORE Tessera: 163494506
-	ELETTORE Nome, cognome, residenza: ITALIA MORELLO, ORTONA(CH)
-	---------------------------------------------------
-	ELETTORE Tessera: 189365925
-	ELETTORE Nome, cognome, residenza: ANTONINO MARA, ORTONA(CH)
-	---------------------------------------------------
-	ELETTORE Tessera: 134636655
-	ELETTORE Nome, cognome, residenza: AURELIO CENCI, PIEVEPELAGO(MO)
-	---------------------------------------------------
-	ELETTORE Tessera: 283259345
-	ELETTORE Nome, cognome, residenza: BARTOLOMEO MORELLO, PIEVEPELAGO(MO)
-	---------------------------------------------------
+	EFFETTUARE LOGIN AMMINISTRATORE UTILIZZANDO LE CREDENZIALI
+	-> USERNAME: local
+	-> PASSWORD: local
+	
+	EFFETTUARE LOGIN ELETTORE UTILIZZANDO LE CREDENZIALI
+	-> NUMERO TESSERA ELETTORALE: 000000000

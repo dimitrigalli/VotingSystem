@@ -21,13 +21,9 @@ public class BackgroundPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Image bgImg;
-	
 	Admin admin;
-	Elettore presidente;
-	Elettore segretario;
-	Elettore scrutatore;
-	
 	Elettore elettore;
+	private CardsPanel cp;
 
 	public BackgroundPanel() {
 		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
@@ -40,15 +36,10 @@ public class BackgroundPanel extends JPanel {
 		}
 		
 		admin = new Admin();
-		presidente = new Elettore();
-		segretario = new Elettore();
-		scrutatore = new Elettore();
-		admin.setPresidente(presidente);
-		admin.setSegretario(segretario);
-		admin.setScrutatore(scrutatore);
 		elettore = new Elettore();
 		
-		this.add(new CardsPanel(admin, elettore));
+		cp = new CardsPanel(admin, elettore);
+		this.add(cp);
 	}
 	
 	protected void paintComponent(Graphics g) {

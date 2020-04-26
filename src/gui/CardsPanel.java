@@ -18,7 +18,10 @@ public class CardsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
+	private AdminLoginPanel alp;
+	private ElettoreLoginPanel elp;
 	private VotingPanel vp;
+	private ClosingPanel clopan;
 
 	public CardsPanel(Admin admin, Elettore elettore) {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -26,11 +29,14 @@ public class CardsPanel extends JPanel {
 		setLocation(240, 20);
 		setSize(940, 470);
 		
-		add(new AdminLoginPanel(this, admin, elettore), "Card 1");
-		add(new ElettoreLoginPanel(this, admin, elettore), "Card 2");
+		alp = new AdminLoginPanel(this, admin, elettore);
+		add(alp, "Card 1");
+		elp = new ElettoreLoginPanel(this, admin, elettore);
+		add(elp, "Card 2");
 		vp = new VotingPanel(this, admin, elettore);
 		add(vp, "Card 3");
-		add(new ClosingPanel(this, vp, admin, elettore), "Card 4");
+		clopan = new ClosingPanel(this, vp, admin, elettore);
+		add(clopan, "Card 4");
 	}
 	
 	public void switchPanel(Container container, String panelName) {

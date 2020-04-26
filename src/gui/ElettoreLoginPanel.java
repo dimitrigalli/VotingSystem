@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,11 +14,9 @@ import javax.swing.SwingConstants;
 
 import data.Admin;
 import data.Elettore;
-import db.ConnessioneDBElettore;
-import db.SetHasVotedDB;
 
 /**
- * @author dimitrigalli, Danilo Finizio
+ * @author dimitrigalli
  *
  */
 public class ElettoreLoginPanel extends JPanel {
@@ -27,6 +24,8 @@ public class ElettoreLoginPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField textField;
+	
+	private CardsPanel cp;
 
 	public ElettoreLoginPanel(CardsPanel mainPanel, Admin admin, Elettore elettore) {
 		setBackground(Color.WHITE);
@@ -76,50 +75,35 @@ public class ElettoreLoginPanel extends JPanel {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
+				
 				else if (textField.getText().length() != 9) {
 					textField.setText("");
 					JOptionPane.showMessageDialog(null, "Attenzione: numero tessera elettorale NON inserito correttamente!", "Errore", JOptionPane.ERROR_MESSAGE);
 				}
 				
+				else if (!textField.getText().equals("000000000")) {
+					textField.setText("");
+					JOptionPane.showMessageDialog(null, "<html>Attenzione:<br>- il numero della tessera inserita non è valido o è associato ad un elettore che ha già votato;<br>- il comune di residenza dell'elettore è diverso da quello della presente sezione.</html>", "Errore", JOptionPane.ERROR_MESSAGE);
+					System.out.println("Errore: impossibile effettuare il login dell'elettore!");
+				}
+				
 				else {
-					
 					elettore.setNumeroTesseraElettorale(textField.getText());
-
-					try {
-						System.out.println("Attenzione: connessione al DBElettore in corso!");
-						ConnessioneDBElettore cdbe = new ConnessioneDBElettore(elettore,AdminLoginPanel.Residenza);
-						if(cdbe.isFound()==false) {
-							JOptionPane.showMessageDialog(null, "<html>Attenzione:<br>- il numero della tessera inserita non è valido o è associato ad un elettore che ha già votato;<br>- il comune di residenza dell'elettore è diverso da quello della presente sezione.</html>", "Errore", JOptionPane.ERROR_MESSAGE);
-							System.out.println("Errore: impossibile effettuare il login dell'elettore!");
-							textField.setText("");
-						}
-						else if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN ELETTORE</font></b><br><br><font size=\"4\"><center><u>• CONFERMARE LA PROPRIA IDENTITÀ</u><br><br><b><p style='color: red'>"+elettore.getNome()+" "+elettore.getCognome()+"</p></b><br>nata/o il <b>"+elettore.getDataDiNascita()+"</b> presso <b>"+elettore.getLuogoDiNascita()+"</b> residente presso <b>"+elettore.getResidenza()+"</b><br><br><u>• LEGGERE ATTENTAMENTE LE ISTRUZIONI SU COME VOTARE</u><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\" nel riquardo del partito<br>senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima selezionare il candidato<br>dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.<br><br><i>Il tuo voto rimarrà ANONIMO. Hai tempo per votare fino alle <b>23:00</b>.</i></center></font></html>", "ConfirmElettoreLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
-							textField.setText("");
-							try {
-								System.out.println("Attenzione: connessione al SetHasVotedDB in corso!");
-								SetHasVotedDB shv = new SetHasVotedDB(elettore, AdminLoginPanel.Residenza);
-								if(shv.isFound()==false) {
-									System.out.println("Errore: impossibile identificare l'elettore!");
-									JOptionPane.showMessageDialog(null, "Errore: impossibile identificare l'elettore! L'app sarà chiusa.", "Errore", JOptionPane.ERROR_MESSAGE);
-									System.exit(3);
-								}
-							}
-							catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-							CardsPanel cp = new CardsPanel(admin, elettore);
-							cp.switchPanel(mainPanel, "Card 3");
-						}
-						else {
-							textField.setText("");
-							CardsPanel cp = new CardsPanel(admin, elettore);
-							cp.switchPanel(mainPanel, "Card 2");
-						}
+					elettore.setNome("MARIO");
+					elettore.setCognome("ROSSI");
+					elettore.setDataDiNascita("01/01/2000");
+					elettore.setLuogoDiNascita("MODENA (MO)");
+					elettore.setResidenza("MODENA (MO)");
+					if (JOptionPane.showOptionDialog(null, "<html><b><font size=\"5\">CONFERMA LOGIN ELETTORE</font></b><br><br><font size=\"4\"><center><u>• CONFERMARE LA PROPRIA IDENTITÀ</u><br><br><b><p style='color: red'>"+elettore.getNome()+" "+elettore.getCognome()+"</p></b><br>nata/o il <b>"+elettore.getDataDiNascita()+"</b> presso <b>"+elettore.getLuogoDiNascita()+"</b> residente presso <b>"+elettore.getResidenza()+"</b><br><br><u>• LEGGERE ATTENTAMENTE LE ISTRUZIONI SU COME VOTARE</u><br><br>Per esprimere la preferenza <b>SOLO AL PARTITO</b>, è necessario cliccare direttamente su \"VOTA\" nel riquardo del partito<br>senza selezionare alcun candidato dalla lista.<br><br>Per esprimere la preferenza <b>AL PARTITO E AD UN SUO CANDIDATO</b>, è necessario prima selezionare il candidato<br>dalla lista e poi cliccare su \"VOTA\" nel riquardo del partito.<br><br><i>Il tuo voto rimarrà ANONIMO. Hai tempo per votare fino alle <b>23:00</b>.</i></center></font></html>", "ConfirmElettoreLogin", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null) == JOptionPane.OK_OPTION) {
+						textField.setText("");
+						cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 3");
 					}
-					catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					
+					else {
+						textField.setText("");
+						cp = new CardsPanel(admin, elettore);
+						cp.switchPanel(mainPanel, "Card 2");
 					}
 				}
 			}

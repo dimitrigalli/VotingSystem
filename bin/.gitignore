@@ -1,2 +1,4 @@
 /db/
-/.gitignore
+/data/
+/gui/
+/time/
